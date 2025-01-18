@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginVertical="10dp"
+    android:padding="15dp"
+    android:id="@+id/itemVoucher"
+    android:background="#F1F1F1">
+
+    <ImageView
+        android:id="@+id/imageVoucher"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/img_voucher"/>
+    <LinearLayout
+        android:id="@+id/layoutVoucher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:layout_toEndOf="@+id/imageVoucher"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tvTitleVoucher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Voucher giam gia"
+            android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/tvDiscountVoucher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15%"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:textColor="#F44336"/>
+    </LinearLayout>
+</RelativeLayout>

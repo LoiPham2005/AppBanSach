@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Lọc doanh thu"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/edStartDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="false"
+        android:hint="Từ ngày"
+        android:importantForAccessibility="no"
+        android:inputType="none"
+        android:longClickable="false" />
+
+    <EditText
+        android:id="@+id/edEndDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="false"
+        android:hint="Đến ngày"
+        android:importantForAccessibility="no"
+        android:inputType="none"
+        android:longClickable="false" />
+</LinearLayout>

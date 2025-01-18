@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".pages.crud_frofile.crud_wallet.WalletActivity"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F9F9F9">
+
+    <ImageView
+        android:id="@+id/imgBackProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Tiêu đề trang -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thanh toán"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ví điện tử"
+        android:textSize="22sp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#000000"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Thẻ thanh toán ví điện tử MoMo -->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+
+<!--        android:padding="16dp"-->
+<!--        android:layout_marginBottom="16dp">-->
+
+<!--        &lt;!&ndash; Hình ảnh MoMo &ndash;&gt;-->
+<!--        <ImageView-->
+<!--            android:id="@+id/Momo"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:src="@drawable/logo_momo"-->
+<!--            android:contentDescription="MoMo Logo"-->
+<!--            android:layout_gravity="center_vertical" />-->
+
+<!--        &lt;!&ndash; Tên ví MoMo &ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:id="@+id/llWallet"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvNameMomo"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:text="Ví MoMo"-->
+<!--                android:textSize="18sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textColor="#000000"-->
+<!--                android:gravity="center_vertical" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvMoneyWallet"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:textSize="15dp"-->
+<!--                android:text="20000VNĐ"-->
+<!--                android:gravity="center_vertical" />-->
+
+<!--        </LinearLayout>-->
+
+        <!-- Dấu ba chấm dọc -->
+<!--        <ImageView-->
+<!--            android:id="@+id/imgOption"-->
+<!--            android:layout_width="20dp"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:src="@drawable/ic_launcher_background"-->
+<!--            android:contentDescription="More Options"-->
+<!--            android:layout_gravity="center_vertical" />-->
+<!--    </LinearLayout>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rvWallet"
+       />
+
+    <!-- Nút dấu cộng (+) để thêm phương thức thanh toán -->
+    <LinearLayout
+        android:id="@+id/llAddMethod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="#FF5722"
+            android:layout_marginEnd="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thêm phương thức thanh toán"
+            android:textSize="16sp"
+            android:textColor="#333333" />
+    </LinearLayout>
+</LinearLayout>

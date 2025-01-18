@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".pages.invoice.InvoiceActivity">
+
+    <TextView
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Đặt hàng thành công"
+        android:textSize="25dp"
+        android:gravity="center_horizontal"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/order_susces"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="
+        Cám ơn bạn đã mua hàng.\n
+        Bạn có thể xem đơn đặt hàng của mình \n
+        trong phần 'Đơn hàng của tôi'."
+        android:textSize="14dp"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        />
+
+    <Button
+        android:id="@+id/btnContinueHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tiếp tục mua sắm"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#333333"
+        android:layout_marginTop="100dp" />
+</LinearLayout>

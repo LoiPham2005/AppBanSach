@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1098314568949",
+    "firebase_url": "https://book-selling-app-da1-team5-default-rtdb.firebaseio.com",
+    "project_id": "book-selling-app-da1-team5",
+    "storage_bucket": "book-selling-app-da1-team5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1098314568949:android:37982638c0f954992621bc",
+        "android_client_info": {
+          "package_name": "fpoly.dungnm.book_selling_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxuMOGPXbMBHTPFACPhmeCQOT6ABf9fuo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
