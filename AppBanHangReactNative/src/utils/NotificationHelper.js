@@ -13,7 +13,7 @@ Notifications.setNotificationHandler({
 });
 
 export const NotificationHelper = {
-  // Đăng ký nhận thông báo
+  // Đăng ký nhận thông báo 
   registerForPushNotificationsAsync: async () => {
     let token;
     if (Device.isDevice) {
