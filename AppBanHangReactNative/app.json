@@ -4,10 +4,11 @@
     "slug": "AppBanHangReactNative",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/welcome.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "newArchEnabled": true,
     "splash": {
-      "image": "./assets/welcome.png",
+      "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -16,40 +17,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/welcome.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      },
-      "useNextNotificationsApi": true,
-      "permissions": ["NOTIFICATIONS"]
+      }
     },
-    "notification": {
-      "icon": "./assets/notification-icon.png",
-      "color": "#ffffff",
-      "androidMode": "default",
-      "androidCollapsedTitle": "Thông báo mới",
-      "iosDisplayInForeground": true,
-      "androidNotificationChannels": [
-        {
-          "name": "orders",
-          "importance": "max",
-          "vibrationPattern": [0, 250, 250, 250],
-          "lightColor": "#FF231F7C",
-          "sound": true,
-          "enableVibrate": true,
-          "showBadge": true,
-          "description": "Thông báo đơn hàng"
-        }
-      ]
-    },
-    "plugins": [
-      [
-        "expo-notifications",
-        {
-          "icon": "./assets/notification-icon.png",
-          "color": "#ffffff",
-          "sounds": ["./assets/notification-sound.wav"]
-        }
-      ]
-    ]
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
   }
 }
