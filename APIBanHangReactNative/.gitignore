@@ -1,0 +1,6 @@
+# Ignore upload folders
+public/uploads/*
+!public/uploads/.gitkeep
+
+# Ignore environment files
+.env

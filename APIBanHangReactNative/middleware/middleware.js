@@ -1,35 +1,46 @@
 const jwt = require('jsonwebtoken');
-const md = require('../models/model_user');
+const User = require('../models/model_user'); // Sửa cách import
 require('dotenv').config();
 
-const chuoi_bi_mat = process.env.TOKEN_SEC_KEY;
-
 const api_auth = async (req, res, next) => {
-    let header_token = req.header('Authorization');
-
-    if (typeof(header_token) == 'undefined') {
-        return res.status(403).json({ message: 'Vui lòng đăng nhập để truy cập API.' });
-    }
-
-    const token = header_token.replace('Bearer ', '');
-    
     try {
-        const data = jwt.verify(token, chuoi_bi_mat);
-        
-        const user = await md.userModel.findOne({ _id: data._id, token: token });
-        
-        if (!user) {
-            console.log('Token không hợp lệ: Không tìm thấy người dùng.');
-            return res.status(403).json({ message: 'Token không hợp lệ.' });
-        }
-        
-        req.user = user;
-        req.token = token;
-        
-        next();
-    } catch (error) {
-        return res.status(403).json({ message: 'Token không hợp lệ 2.' });
-    }
-}
+        const header_token = req.header('Authorization');
 
-module.exports = {api_auth};
+        if (!header_token) {
+            return res.status(401).json({ message: 'No token provided' });
+        }
+
+        const token = header_token.replace('Bearer ', '');
+
+        try {
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+            // Sửa cách query
+            const user = await User.findOne({
+                _id: decoded.id,
+                accessToken: token
+            });
+
+            if (!user) {
+                return res.status(401).json({ message: 'User not found or token invalid' });
+            }
+
+            req.user = user;
+            req.token = token;
+            next();
+        } catch (error) {
+            if (error.name === 'TokenExpiredError') {
+                return res.status(401).json({ message: 'Token expired' });
+            }
+            if (error.name === 'JsonWebTokenError') {
+                return res.status(401).json({ message: 'Invalid token format' });
+            }
+            throw error;
+        }
+    } catch (error) {
+        console.error('Auth middleware error:', error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+module.exports = { api_auth };

@@ -32,7 +32,7 @@ module.exports = {
   list: async (req, res) => {
       try {
           const result = await modelImages.find();
-          if (result) {
+          if (result && result.length > 0) {
               res.json({
                   "status": 200,
                   "message": "List",
@@ -40,13 +40,13 @@ module.exports = {
               });
           } else {
               res.json({
-                  "status": 400,
-                  "message": "Lỗi",
+                  "status": 200,  // Vẫn trả về 200 nhưng với mảng rỗng
+                  "message": "Không có banner",
                   "data": []
               });
           }
       } catch (err) {
-          console.error("Error while fetching users:", err); 
+          console.error("Error while fetching banners:", err); 
           res.status(500).send({ error: 'An error occurred while fetching data' }); 
       }
   },

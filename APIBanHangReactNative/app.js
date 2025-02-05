@@ -12,7 +12,19 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var APIRouter = require('./routes/api');
 
-var app = express();
+const app = express();
+const http = require('http').createServer(app);
+const io = require('socket.io')(http, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["*"],
+    credentials: true
+  },
+  transports: ['websocket', 'polling']
+});
+const initializeChatSocket = require('./socketHandlers/chatHandlers');
+const initializeNotificationSocket = require('./socketHandlers/notificationHandlers');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -45,6 +57,10 @@ app.use('/api', APIRouter);
 
 connectMongoose.connect();
 
+// Initialize socket handlers
+initializeChatSocket(io);
+initializeNotificationSocket(io);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -61,4 +77,11 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+// Change app.listen to http.listen
+// const port = process.env.PORT || 3000;
+// http.listen(port, () => {
+//   console.log(`Server running on port ${port}`);
+// });
+
+// Make sure to export http instead of app
+module.exports = { app, http };

@@ -2,7 +2,19 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const products = new Schema({
-    images: [{ type: String, required: true }], // Array of images
+    // images: [{ type: String, required: true }], // Array of images
+    // Thêm trường media để lưu cả ảnh và video
+    media: [{
+        type: { 
+            type: String, 
+            enum: ['image', 'video'],
+            required: false 
+        },
+        url: { 
+            type: String, 
+            required: false 
+        }
+    }],
     title: { type: String, required: true },
     publishing_house: { type: String, required: true },
     price: { type: Number, required: true },

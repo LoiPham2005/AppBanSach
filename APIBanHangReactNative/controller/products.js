@@ -4,39 +4,49 @@ const modelProducts = require('../models/model_products');
 const Category = require('../models/model_category'); // Thêm dòng này
 
 module.exports = {
-    // add data
-    //   add: async (req, res) => {
-    //       try {
+    // add data chỉ mỗi ảnh
+    // add: async (req, res) => {
+    //     try {
     //         console.log("Request Body:", req.body);
     //         const id_category = req.body.id_category;
     //         if (!id_category) {
     //             return res.status(400).json({ error: 'id_category is required' });
     //         }
-    //         req.body.id_category = id_category;
 
-    //           const model = new modelProducts(req.body);
-    //           console.log("Data to be saved:", model);
-    //           const result = await model.save();
-    //           if (result) {
-    //               res.json({
-    //                   "status": 200,
-    //                   "message": "Thêm thành công",
-    //                   "data": result
-    //               });
-    //           } else {
-    //               res.json({
-    //                   "status": 400,
-    //                   "message": "Thêm thất bại",
-    //                   "data": []
-    //               });
-    //           }
-    //       } catch (err) {
-    //           console.error("Error while saving user:", err);
-    //           res.status(500).send({ error: 'An error occurred while saving data' });
-    //       }
-    //   },
+    //         // Ensure images array exists
+    //         if (!req.body.images || !Array.isArray(req.body.images)) {
+    //             return res.status(400).json({ error: 'images array is required' });
+    //         }
 
-    // add data
+    //         const model = new modelProducts({
+    //             ...req.body,
+    //             id_category: id_category,
+    //             images: req.body.images // Array of image URLs
+    //         });
+
+    //         console.log("Data to be saved:", model);
+    //         const result = await model.save();
+
+    //         if (result) {
+    //             res.json({
+    //                 "status": 200,
+    //                 "message": "Thêm thành công",
+    //                 "data": result
+    //             });
+    //         } else {
+    //             res.json({
+    //                 "status": 400,
+    //                 "message": "Thêm thất bại",
+    //                 "data": []
+    //             });
+    //         }
+    //     } catch (err) {
+    //         console.error("Error while saving product:", err);
+    //         res.status(500).send({ error: 'An error occurred while saving data' });
+    //     }
+    // },
+
+    // add data ảnh và video
     add: async (req, res) => {
         try {
             console.log("Request Body:", req.body);
@@ -45,20 +55,33 @@ module.exports = {
                 return res.status(400).json({ error: 'id_category is required' });
             }
 
-            // Ensure images array exists
-            if (!req.body.images || !Array.isArray(req.body.images)) {
-                return res.status(400).json({ error: 'images array is required' });
+            // Kiểm tra media array
+            if (!req.body.media || !Array.isArray(req.body.media)) {
+                return res.status(400).json({ error: 'media array is required' });
+            }
+
+            // Validate media array
+            const validMediaTypes = ['image', 'video'];
+            const isValidMedia = req.body.media.every(item => 
+                item.type && 
+                item.url && 
+                validMediaTypes.includes(item.type)
+            );
+
+            if (!isValidMedia) {
+                return res.status(400).json({ 
+                    error: 'Invalid media format. Each media item must have type (image/video) and url' 
+                });
             }
 
             const model = new modelProducts({
                 ...req.body,
                 id_category: id_category,
-                images: req.body.images // Array of image URLs
+                media: req.body.media
             });
 
-            console.log("Data to be saved:", model);
             const result = await model.save();
-
+            
             if (result) {
                 res.json({
                     "status": 200,
@@ -178,47 +201,18 @@ module.exports = {
         }
     },
 
-    // search theo title
-    // search: async (req, res) => {
-    //     try {
-    //         const title = req.query.title;
-
-    //         const query = {};
-    //         if (title) query.title = { "$regex": title, "$options": 'i' };
-
-    //         const result = await modelProducts.find(query)
-    //             .sort({ createdAt: -1 });
-    //         if (result) {
-    //             res.json({
-    //                 "status": 200,
-    //                 "message": "List",
-    //                 "data": result
-    //             });
-    //         } else {
-    //             res.json({
-    //                 "status": 400,
-    //                 "message": "Lỗi",
-    //                 "data": []
-    //             });
-    //         }
-    //     } catch (err) {
-    //         console.error("Error while fetching users:", err);
-    //         res.status(500).send({ error: 'An error occurred while fetching data' });
-    //     }
-    // }
-
     search: async (req, res) => {
         try {
             const key = req.query.key;
             const title = req.query.title;
             const category = req.query.category;
-            const brand = req.query.brand;
+            const publishing_house = req.query.publishing_house;
 
             const query = {};
-            if (key) query.$or = [{ name: { "$regex": key, "$options": 'i' } }, { title: { "$regex": key, "$options": 'i' } }, { brand: { "$regex": key, "$options": 'i' } }];
+            if (key) query.$or = [{ name: { "$regex": key, "$options": 'i' } }, { title: { "$regex": key, "$options": 'i' } }, { publishing_house: { "$regex": key, "$options": 'i' } }];
             if (title) query.title = { "$regex": title, "$options": 'i' };
             if (category) query.id_category = category; // Assuming category is sent as ObjectId
-            if (brand) query.brand = { "$regex": brand, "$options": 'i' };
+            if (publishing_house) query.publishing_house = { "$regex": publishing_house, "$options": 'i' };
 
             const result = await modelProducts.find(query)
                 .sort({ createdAt: -1 });
