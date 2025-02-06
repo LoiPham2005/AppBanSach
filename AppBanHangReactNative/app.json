@@ -20,7 +20,9 @@
         "backgroundColor": "#ffffff"
       },
       "useNextNotificationsApi": true,
-      "permissions": ["NOTIFICATIONS"]
+      "permissions": ["NOTIFICATIONS"],
+      "package": "com.yourcompany.appbanhangreactnative",
+      "googleServicesFile": "./google-services.json"
     },
     "notification": {
       "icon": "./assets/notification-icon.png",
