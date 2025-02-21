@@ -93,7 +93,7 @@ const SearchResults = ({ route, navigation }) => {
                         backgroundColor: theme.secondaryBackground,
                         color: theme.textColor
                     }]}
-                    placeholder={t('searchhoder')}
+                    placeholder={t('search.placeholder')}
                     placeholderTextColor={theme.placeholderColor}
                     value={searchText}
                     onChangeText={setSearchText}
@@ -105,7 +105,7 @@ const SearchResults = ({ route, navigation }) => {
                     style={[styles.searchButton, { backgroundColor: '#2196F3' }]}
                     onPress={handleSearch}
                 >
-                    <Text style={styles.searchButtonText}>{t('search')}</Text>
+                    <Text style={styles.searchButtonText}>{t('search.searchButton')}</Text>
                 </TouchableOpacity>
             </View>
 
@@ -118,12 +118,12 @@ const SearchResults = ({ route, navigation }) => {
                 contentContainerStyle={styles.listContent}
                 ListEmptyComponent={() => (
                     <Text style={[styles.emptyText, { color: theme.textColor }]}>
-                        {loading ? t('searching') : t('noResults')}
+                        {loading ? t('search.searching') : t('search.noResults')}
                     </Text>
                 )}
             />
 
-            <LoadingOverlay visible={loading} message={t('searching')} />
+            <LoadingOverlay visible={loading} message={t('search.searching')} />
         </SafeAreaView>
     );
 };

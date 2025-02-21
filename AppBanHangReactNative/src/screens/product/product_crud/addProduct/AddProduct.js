@@ -67,10 +67,10 @@ const AddProductScreen = () => {
   };
 
   const statusOptions = [
-    { label: t('active'), value: 'active' },
-    { label: t('outOfStock'), value: 'out of stock' },
-    { label: t('importingGoods'), value: 'importing goods' },
-    { label: t('stopSelling'), value: 'stop selling' },
+    { label: t('product.active'), value: 'active' },
+    { label: t('product.outOfStock'), value: 'out of stock' },
+    { label: t('product.importingGoods'), value: 'importing goods' },
+    { label: t('product.stopSelling'), value: 'stop selling' },
   ];
 
   // Hàm chọn ảnh từ thư viện
@@ -139,14 +139,43 @@ const AddProductScreen = () => {
 
   // Sửa lại hàm handleSubmit
   const handleSubmit = async () => {
-    if (!title || !author || !price || !description || !category || !status || mediaFiles.length === 0) {
-      Alert.alert(t('common.error'), t('addProduct.fillAllFields'));
+    if (!title.trim()) {
+      Alert.alert(t('common.error'), t('productManagement.addProduct.titleRequired'));
       return;
     }
-
+    if (!author.trim()) {
+      Alert.alert(t('common.error'), t('productManagement.addProduct.authorRequired'));
+      return;
+    }
+    if (!price.trim() || isNaN(price) || parseFloat(price) <= 0) {
+      Alert.alert(t('common.error'), t('productManagement.addProduct.priceInvalid'));
+      return;
+    }
+    if (!quality.trim() || isNaN(quality) || parseInt(quality) < 0) {
+      Alert.alert(t('common.error'), t('productManagement.addProduct.qualityInvalid'));
+      return;
+    }
+    if (!description.trim()) {
+      Alert.alert(t('common.error'), t('productManagement.addProduct.descriptionRequired'));
+      return;
+    }
+    if (!category) {
+      Alert.alert(t('common.error'), t('productManagement.addProduct.categoryRequired'));
+      return;
+    }
+    if (!status) {
+      Alert.alert(t('common.error'), t('productManagement.addProduct.statusRequired'));
+      return;
+    }
+    if (mediaFiles.length === 0) {
+      Alert.alert(t('common.error'), t('productManagement.addProduct.mediaRequired'));
+      return;
+    }
+  
+    // Tiếp tục xử lý nếu hợp lệ
     Alert.alert(
-      t('addProduct.confirm'),
-      t('addProduct.confirmMessage'),
+      t('productManagement.addProduct.confirm'),
+      t('productManagement.addProduct.confirmMessage'),
       [
         {
           text: t('common.cancel'),
@@ -157,7 +186,6 @@ const AddProductScreen = () => {
           onPress: async () => {
             try {
               setIsLoading(true);
-
               const uploadedMedia = [];
               await Promise.all(mediaFiles.map(async (file) => {
                 if (!file.uri.startsWith('http')) {
@@ -170,7 +198,7 @@ const AddProductScreen = () => {
                   }
                 }
               }));
-
+  
               const productData = {
                 title,
                 publishing_house: author,
@@ -180,23 +208,22 @@ const AddProductScreen = () => {
                 id_category: category,
                 status,
                 media: uploadedMedia,
-                id_user: userId // Thêm id_user vào dữ liệu gửi đi
+                id_user: userId
               };
-
+  
               const result = await productService.addProduct(productData);
-
               if (result.status === 200) {
                 Alert.alert(
                   t('common.success'),
-                  t('addProduct.success'),
+                  t('productManagement.addProduct.success'),
                   [{ text: 'OK', onPress: () => navigation.goBack() }]
                 );
               } else {
-                Alert.alert(t('common.error'), result.message || t('addProduct.error'));
+                Alert.alert(t('common.error'), result.message || t('productManagement.addProduct.error'));
               }
             } catch (error) {
               console.error("Error in handleSubmit:", error);
-              Alert.alert(t('common.error'), t('addProduct.error'));
+              Alert.alert(t('common.error'), t('productManagement.addProduct.error'));
             } finally {
               setIsLoading(false);
             }
@@ -205,12 +232,13 @@ const AddProductScreen = () => {
       ]
     );
   };
+  
 
   const handleImagePick = async () => {
     try {
       const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
       if (status !== 'granted') {
-        Alert.alert(t('common.error'), t('addProduct.permissionDenied'));
+        Alert.alert(t('common.error'), t('productManagement.addProduct.permissionDenied'));
         return;
       }
   
@@ -234,7 +262,7 @@ const AddProductScreen = () => {
       }
     } catch (error) {
       console.error('Error picking images:', error);
-      Alert.alert(t('common.error'), t('addProduct.errorSelectingImage'));
+      Alert.alert(t('common.error'), t('productManagement.addProduct.errorSelectingImage'));
     }
   };
 
@@ -265,7 +293,7 @@ const AddProductScreen = () => {
         contentContainerStyle={{ flexGrow: 1, paddingBottom: 20 }}
       >
         <View style={styles.container}>
-          <Text style={styles.title}>{t('addNewProduct')}</Text>
+          <Text style={styles.title}>{t('productManagement.addProduct.title')}</Text>
 
           {mediaFiles.map((media, index) => (
             <View key={index}>
@@ -297,46 +325,46 @@ const AddProductScreen = () => {
 
 
           <View style={styles.buttonStyle}>
-            <Button title={t('chooseImage')} onPress={handleImagePick} />
+            <Button title={t('form.chooseImage')} onPress={handleImagePick} />
           </View>
 
           <View>
-            <Button title={t('chooseVideo')} onPress={handleVideoPick} />
+            <Button title={t('form.chooseVideo')} onPress={handleVideoPick} />
           </View>
 
           <TextInput
             style={styles.input}
-            placeholder={t('title')}
+            placeholder={t('form.title')}
             value={title}
             onChangeText={setTitle}
           />
           <TextInput
             style={styles.input}
-            placeholder={t('author')}
+            placeholder={t('form.author')}
             value={author}
             onChangeText={setAuthor}
           />
           <TextInput
             style={styles.input}
-            placeholder={t('price')}
+            placeholder={t('form.price')}
             value={price}
             onChangeText={setPrice}
             keyboardType="numeric"
           />
           <TextInput
             style={styles.input}
-            placeholder={t('description')}
+            placeholder={t('form.description')}
             value={description}
             onChangeText={setDescription}
           />
           <TextInput
             style={styles.input}
-            placeholder={t('quality')}
+            placeholder={t('form.quality')}
             value={quality}
             onChangeText={setQuality}
           />
           <RNPickerSelect
-            placeholder={{ label: t('selectCategory'), value: null }}
+            placeholder={{ label: t('form.selectCategory'), value: null }}
             items={categories}
             onValueChange={setCategory}
             value={category}
@@ -347,7 +375,7 @@ const AddProductScreen = () => {
           />
 
           <RNPickerSelect
-            placeholder={{ label: t('selectStatus'), value: null }}
+            placeholder={{ label: t('form.selectStatus'), value: null }}
             items={statusOptions}
             onValueChange={setStatus}
             value={status}
@@ -356,7 +384,7 @@ const AddProductScreen = () => {
               inputAndroid: styles.inputAndroid
             }}
           />
-          <Button title={t('submit')} onPress={handleSubmit} />
+          <Button title={t('form.submit')} onPress={handleSubmit} />
 
           {/* Loading indicator */}
           {isLoading && (
@@ -370,7 +398,7 @@ const AddProductScreen = () => {
 
       <LoadingOverlay
         visible={isLoading}
-        message={t('addProduct.uploadingMedia')}
+        message={t('productManagement.addProduct.uploadingMedia')}
       />
     </>
   );

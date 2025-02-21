@@ -73,7 +73,7 @@ const StatisticsScreen = () => {
     return (
       <View style={styles.chartContainer}>
         <Text style={[styles.chartTitle, { color: theme.textColor }]}>
-          Doanh thu theo phương thức thanh toán
+          {t('statistics.charts.paymentMethod')}
         </Text>
         <PieChart
           data={[
@@ -117,7 +117,7 @@ const StatisticsScreen = () => {
     return (
         <View style={styles.chartContainer}>
             <Text style={[styles.chartTitle, { color: theme.textColor }]}>
-                Xu hướng doanh thu
+                {t('statistics.charts.trend')}
             </Text>
             <LineChart
                 data={data}
@@ -150,7 +150,7 @@ const StatisticsScreen = () => {
     return (
       <View style={styles.section}>
         <Text style={[styles.sectionTitle, { color: theme.textColor }]}>
-          Sản phẩm bán chạy
+          {t('statistics.topProducts.title')}
         </Text>
         {statsData.topSellingProducts.map((product, index) => (
           <View key={index} style={styles.productItem}>
@@ -188,7 +188,7 @@ const StatisticsScreen = () => {
             }}
           >
             <Text style={{ color: theme.textColor }}>
-              Từ: {dateRange.startDate.toLocaleDateString()}
+              {t('statistics.dateRange.from')}: {dateRange.startDate.toLocaleDateString()}
             </Text>
           </TouchableOpacity>
 
@@ -200,7 +200,7 @@ const StatisticsScreen = () => {
             }}
           >
             <Text style={{ color: theme.textColor }}>
-              Đến: {dateRange.endDate.toLocaleDateString()}
+              {t('statistics.dateRange.to')}: {dateRange.endDate.toLocaleDateString()}
             </Text>
           </TouchableOpacity>
         </View>
@@ -222,7 +222,7 @@ const StatisticsScreen = () => {
           <View style={styles.summaryContainer}>
             <View style={styles.summaryItem}>
               <Text style={[styles.summaryLabel, { color: theme.textColor }]}>
-                Tổng doanh thu
+                {t('statistics.summary.totalRevenue')}
               </Text>
               <Text style={[styles.summaryValue, { color: theme.textColor }]}>
                 {statsData?.totalRevenue?.toLocaleString('vi-VN')}đ
@@ -231,7 +231,7 @@ const StatisticsScreen = () => {
 
             <View style={styles.summaryItem}>
               <Text style={[styles.summaryLabel, { color: theme.textColor }]}>
-                Tổng đơn hàng
+                {t('statistics.summary.totalOrders')}
               </Text>
               <Text style={[styles.summaryValue, { color: theme.textColor }]}>
                 {statsData?.totalOrders}
@@ -240,7 +240,7 @@ const StatisticsScreen = () => {
 
             <View style={styles.summaryItem}>
               <Text style={[styles.summaryLabel, { color: theme.textColor }]}>
-                Sản phẩm đã bán
+                {t('statistics.summary.totalProducts')}
               </Text>
               <Text style={[styles.summaryValue, { color: theme.textColor }]}>
                 {statsData?.totalProductsSold}

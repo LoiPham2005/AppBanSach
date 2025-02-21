@@ -6,8 +6,10 @@ import { useTheme } from '../../../context/ThemeContext';
 import { walletService } from '../../../services/WalletService';
 import LoadingOverlay from '../../../components/LoadingOverlay';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTranslation } from 'react-i18next';
 
 export default function WalletScreen() {
+  const { t } = useTranslation();
   const navigation = useNavigation();
   const { theme } = useTheme();
   const [loading, setLoading] = useState(false);
@@ -65,7 +67,7 @@ export default function WalletScreen() {
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Feather name="arrow-left" size={24} color={theme.textColor} />
         </TouchableOpacity>
-        <Text style={[styles.headerTitle, { color: theme.textColor }]}>Ví MoMo</Text>
+        <Text style={[styles.headerTitle, { color: theme.textColor }]}>{t('wallet.title')}</Text>
         <View style={{ width: 24 }} />
       </View>
 
@@ -77,7 +79,7 @@ export default function WalletScreen() {
             source={require('../../../../assets/momo-logo.png')} 
             style={styles.walletLogo}
           />
-          <Text style={[styles.balanceLabel, { color: theme.textColor }]}>Số dư hiện tại:</Text>
+          <Text style={[styles.balanceLabel, { color: theme.textColor }]}>{t('wallet.balance')}</Text>
           <Text style={styles.balanceAmount}>
             {wallet?.balance?.toLocaleString('vi-VN', {
               style: 'currency',
@@ -90,13 +92,13 @@ export default function WalletScreen() {
             style={styles.rechargeButton}
             onPress={() => navigation.navigate('RechargeScreen')}
           >
-            <Text style={styles.rechargeButtonText}>Nạp tiền</Text>
+            <Text style={styles.rechargeButtonText}>{t('wallet.recharge.title')}</Text>
           </TouchableOpacity>
 
           {wallet?.transactions && wallet.transactions.length > 0 && (
             <View style={styles.transactionContainer}>
               <Text style={[styles.transactionTitle, { color: theme.textColor }]}>
-                Giao dịch gần đây
+                {t('wallet.history')}
               </Text>
               {wallet.transactions.map((transaction, index) => (
                 <View key={index} style={styles.transactionItem}>

@@ -8,7 +8,6 @@ const address = new Schema({
     commune: { type: String, required: true },
     receivingAddress: { type: String, required: true },
     phone: { type: Number, required: true },
-    chooseDefault: { type: Boolean, required: false },
     id_user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
 }, {
     timestamps: true,

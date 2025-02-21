@@ -82,7 +82,7 @@ const EditProfile = ({ navigation }) => {
   const handleSave = async () => {
     Alert.alert(
       t('common.confirm'),
-      t('profile.confirmMessage'),
+      t('profile.editProfile.confirmMessage'),
       [
         {
           text: t('common.cancel'),
@@ -166,7 +166,9 @@ const EditProfile = ({ navigation }) => {
 
   return (
     <ScrollView style={[styles.container, { backgroundColor: theme.backgroundColor }]}>
-      <Text style ={styles.textHeader}>Sửa thông tin cá nhân</Text>
+      <Text style={[styles.textHeader]}>
+        {t('profile.editProfile.title')}
+      </Text>
       <View style={styles.avatarContainer}>
         <TouchableOpacity onPress={handleImagePick}>
           <Image
@@ -257,7 +259,10 @@ const EditProfile = ({ navigation }) => {
         <Text style={styles.saveButtonText}>{t('profile.save')}</Text>
       </TouchableOpacity>
 
-      <LoadingOverlay visible={isLoading} message={t('profile.updating')} />
+      <LoadingOverlay 
+        visible={isLoading} 
+        message={t('profile.editProfile.saving')} 
+      />
     </ScrollView>
   );
 };

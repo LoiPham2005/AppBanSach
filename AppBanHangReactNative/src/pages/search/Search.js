@@ -68,7 +68,7 @@ const SearchScreen = ({ navigation }) => {
             backgroundColor: theme.secondaryBackground,
             color: theme.textColor
           }]}
-          placeholder={t('searchhoder')}
+          placeholder={t('search.placeholder')}
           placeholderTextColor={theme.placeholderColor}
           value={searchText}
           onChangeText={setSearchText}
@@ -80,7 +80,7 @@ const SearchScreen = ({ navigation }) => {
           style={[styles.searchButton, { backgroundColor: '#2196F3' }]}
           onPress={handleSearch}
         >
-          <Text style={styles.searchButtonText}>{t('search')}</Text>
+          <Text style={styles.searchButtonText}>{t('search.searchButton')}</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

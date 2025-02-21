@@ -80,7 +80,7 @@ const AccountScreen = () => {
           {item.email}
         </Text>
         <Text style={[styles.phone, { color: theme.textColor }]}>
-          {item.phone || t('common.noPhone')}
+          {item.phone || t('account.noPhone')}
         </Text>
       </View>
     </View>
@@ -92,7 +92,7 @@ const AccountScreen = () => {
         <Feather name="search" size={20} color={theme.textColor} style={styles.searchIcon} />
         <TextInput
           style={[styles.searchInput, { color: theme.textColor }]}
-          placeholder={t('common.search')}
+          placeholder={t('account.search')}
           placeholderTextColor={theme.textColor}
           value={searchQuery}
           onChangeText={setSearchQuery}

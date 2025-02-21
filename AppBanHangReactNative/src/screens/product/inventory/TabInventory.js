@@ -64,13 +64,13 @@ export default function TabInventory() {
   const getStatusText = (status) => {
     switch (status) {
       case 'active':
-        return t('active');
+        return t('inventory.status.active');
       case 'out of stock':
-        return t('outOfStock');
+        return t('inventory.status.outOfStock');
       case 'importing goods':
-        return t('importingGoods');
+        return t('inventory.status.importing');
       case 'stop selling':
-        return t('stopSelling');
+        return t('inventory.status.stopSelling');
       default:
         return status;
     }
@@ -80,7 +80,7 @@ export default function TabInventory() {
     <View style={[styles.productCard, { backgroundColor: theme.backgroundColor }]}>
       <View style={styles.productHeader}>
         <Text style={[styles.productTitle, { color: theme.textColor }]}>
-          {t('nameProduct')}: {item.title}
+          {t('product.name')}: {item.title}
         </Text>
         <View style={[styles.statusBadge, { backgroundColor: getStatusColor(item.status) }]}>
           <Text style={styles.statusText}>{getStatusText(item.status)}</Text>
@@ -89,13 +89,13 @@ export default function TabInventory() {
 
       <View style={styles.productDetails}>
         <Text style={[styles.text, { color: theme.textColor }]}>
-          {t('author')}: {item.publishing_house}
+          {t('product.author')}: {item.publishing_house}
         </Text>
         <Text style={[styles.text, { color: theme.textColor }]}>
-          {t('priceProduct')}: {item.price.toLocaleString('vi-VN')}đ
+          {t('product.price')}: {item.price.toLocaleString('vi-VN')}đ
         </Text>
         <Text style={[styles.text, { color: theme.textColor }]}>
-          {t('quantityProduct')}: {item.stock_quantity}
+          {t('product.quantity')}: {item.stock_quantity}
         </Text>
         
         <View style={styles.stockIndicator}>

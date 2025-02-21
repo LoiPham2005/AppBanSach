@@ -126,27 +126,27 @@ const RegisterScreen = ({ navigation }) => {
                 >
                     <View style={styles.contentContainer}>
                         <Text style={[styles.titleStyle, { color: theme.textColor }]}>
-                            {t('registerTitle')}
+                            {t('auth.register.title')}
                         </Text>
 
                         <Input
                             value={name}
                             onChangeText={setName}
-                            placeholder={t('nameText')}
+                            placeholder={t('auth.register.name')}
                             error={errors.name}
                         />
 
                         <Input
                             value={email}
                             onChangeText={setEmail}
-                            placeholder={t('emailText')}
+                            placeholder={t('auth.register.email')}
                             error={errors.email}
                         />
 
                         <Input
                             value={password}
                             onChangeText={setPassword}
-                            placeholder={t('passText')}
+                            placeholder={t('auth.register.password')}
                             secureTextEntry={true}
                             error={errors.password}
                         />
@@ -154,33 +154,31 @@ const RegisterScreen = ({ navigation }) => {
                         <Input
                             value={confirmPassword}
                             onChangeText={setConfirmPassword}
-                            placeholder={t('confirmPassText')}
+                            placeholder={t('auth.register.confirmPassword')}
                             secureTextEntry={true}
                             error={errors.confirmPassword}
                         />
 
-                        <TouchableOpacity
+                        <TouchableOpacity 
                             style={styles.touchLogin}
                             onPress={handleRegister}
                         >
-                            <Text style={styles.textLogin}>
-                                {t('buttonRegister')}
-                            </Text>
+                            <Text style={styles.textLogin}>{t('auth.register.registerButton')}</Text>
                         </TouchableOpacity>
                     </View>
                 </ScrollView>
 
                 <View style={styles.asks}>
-                    <Text style={{ color: theme.textColor }}>{t('haveAccount')}</Text>
+                    <Text style={{ color: theme.textColor }}>{t('auth.register.haveAccount')}</Text>
                     <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                        <Text style={styles.textRegister}> {t('loginName')}</Text>
+                        <Text style={styles.textRegister}> {t('auth.register.login')}</Text>
                     </TouchableOpacity>
                 </View>
             </KeyboardAvoidingView>
             
             <LoadingOverlay 
                 visible={isLoading} 
-                message={t('register.registering')} 
+                message={t('auth.register.registering')} 
             />
         </>
     );
@@ -207,7 +205,7 @@ const styles = StyleSheet.create({
     },
     touchLogin: {
         width: 140,
-        marginTop: 50,
+        marginTop: 40,
         alignSelf: 'center',
         paddingHorizontal: 17,
         paddingVertical: 10,
@@ -227,7 +225,8 @@ const styles = StyleSheet.create({
     },
     textRegister: {
         color: '#2d201c'
-    }
+    },
+
 });
 
 export default RegisterScreen;

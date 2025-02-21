@@ -35,8 +35,7 @@ const LanguageSwitcher = () => {
 
   return (
     <View style={{ padding: 20 }}>
-      <Text style={{ fontSize: 18, marginBottom: 10 }}>{t('language')}</Text>
-      
+      <Text style={{ fontSize: 18, marginBottom: 10 }}>{t('common.language')}</Text>
       <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
         <TouchableOpacity
           style={{
@@ -47,7 +46,7 @@ const LanguageSwitcher = () => {
           onPress={() => changeLanguage('vi')}
         >
           <Text style={{ color: currentLanguage === 'vi' ? 'white' : 'black' }}>
-            Tiếng Việt
+            {t('language.vietnamese')}
           </Text>
         </TouchableOpacity>
 
@@ -60,7 +59,7 @@ const LanguageSwitcher = () => {
           onPress={() => changeLanguage('en')}
         >
           <Text style={{ color: currentLanguage === 'en' ? 'white' : 'black' }}>
-            English
+            {t('language.english')}
           </Text>
         </TouchableOpacity>
       </View>
@@ -68,4 +67,4 @@ const LanguageSwitcher = () => {
   );
 };
 
-export default LanguageSwitcher; 
+export default LanguageSwitcher;

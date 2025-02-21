@@ -190,15 +190,15 @@ const HomeScreen = ({ navigation }) => {
       <View style={styles.iconContainer}>
       <TouchableOpacity style={styles.iconBox} onPress={handleNavigate}>
         <Feather name="book-open" size={24} color={theme.textColor} />
-        <Text style={[styles.iconText, { color: theme.textColor }]}>{t('bestselling')}</Text>
+        <Text style={[styles.iconText, { color: theme.textColor }]}>{t('home.bestsellers')}</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.iconBox}>
         <Feather name="tag" size={24} color={theme.textColor} />
-        <Text style={[styles.iconText, { color: theme.textColor }]}>{t('sale')}</Text>
+        <Text style={[styles.iconText, { color: theme.textColor }]}>{t('home.onSale')}</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.iconBox}>
         <Feather name="star" size={24} color={theme.textColor} />
-        <Text style={[styles.iconText, { color: theme.textColor }]}>{t('discount')}</Text>
+        <Text style={[styles.iconText, { color: theme.textColor }]}>{t('home.goldenDeals')}</Text>
       </TouchableOpacity>
     </View>
     );
@@ -283,11 +283,11 @@ const HomeScreen = ({ navigation }) => {
     return(
       <View style={styles.sectionHeader}>
           <Text style={[styles.sectionTitle, { color: theme.textColor }]}>
-            {t('outstandingProducts')}
+            {t('home.featured')}
           </Text>
           <TouchableOpacity>
             <Text style={[styles.viewAll, { color: isDarkMode ? '#888' : 'gray' }]}>
-              {t('viewAll')}
+              {t('home.viewAll')}
             </Text>
           </TouchableOpacity>
         </View>

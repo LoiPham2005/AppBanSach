@@ -5,9 +5,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // Cấu hình notification handler
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: true,
-    shouldSetBadge: true,
+    // shouldShowAlert: true,
+    // shouldPlaySound: true,
+    // shouldSetBadge: true,
     priority: Notifications.AndroidNotificationPriority.MAX
   })
 });

@@ -6,10 +6,12 @@ import { useTheme } from '../../../../context/ThemeContext';
 import { walletService } from '../../../../services/WalletService';
 import LoadingOverlay from '../../../../components/LoadingOverlay';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTranslation } from 'react-i18next';
 
 export default function RechargeScreen() {
   const navigation = useNavigation();
   const { theme } = useTheme();
+  const { t } = useTranslation();
   const [amount, setAmount] = useState('');
   const [loading, setLoading] = useState(false);
   const [userId, setUserId] = useState(null);
@@ -28,25 +30,25 @@ export default function RechargeScreen() {
 
   const handleRecharge = () => {
     if (!userId) {
-      Alert.alert('Lỗi', 'Vui lòng đăng nhập lại');
+      Alert.alert(t('common.error'), t('auth.login.loginRequired'));
       return;
     }
 
     if (!amount || isNaN(amount) || parseInt(amount) <= 0) {
-      Alert.alert('Lỗi', 'Vui lòng nhập số tiền hợp lệ');
+      Alert.alert(t('common.error'), t('wallet.recharge.invalidAmount'));
       return;
     }
 
     Alert.alert(
-      'Xác nhận nạp tiền',
-      `Bạn có muốn nạp ${parseInt(amount).toLocaleString('vi-VN')} VND không?`,
+      t('wallet.recharge.confirm'),
+      t('wallet.recharge.message', { amount: parseInt(amount).toLocaleString('vi-VN') }),
       [
         {
-          text: 'Hủy',
+          text: t('common.cancel'),
           style: 'cancel'
         },
         {
-          text: 'Nạp',
+          text: t('wallet.recharge.title'),
           onPress: async () => {
             try {
               setLoading(true);
@@ -81,7 +83,7 @@ export default function RechargeScreen() {
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Feather name="arrow-left" size={24} color={theme.textColor} />
         </TouchableOpacity>
-        <Text style={[styles.headerTitle, { color: theme.textColor }]}>Nạp tiền</Text>
+        <Text style={[styles.headerTitle, { color: theme.textColor }]}>{t('wallet.recharge.title')}</Text>
         <View style={{ width: 24 }} />
       </View>
 
@@ -89,7 +91,7 @@ export default function RechargeScreen() {
         <LoadingOverlay />
       ) : (
         <View style={styles.content}>
-          <Text style={[styles.label, { color: theme.textColor }]}>Nhập số tiền muốn nạp:</Text>
+          <Text style={[styles.label, { color: theme.textColor }]}>{t('wallet.recharge.amount')}</Text>
           <TextInput
             style={[styles.input, { color: theme.textColor, borderColor: theme.borderColor }]}
             placeholder="Nhập số tiền"
@@ -102,7 +104,7 @@ export default function RechargeScreen() {
             style={styles.rechargeButton}
             onPress={handleRecharge}
           >
-            <Text style={styles.rechargeButtonText}>Nạp tiền</Text>
+            <Text style={styles.rechargeButtonText}>{t('wallet.recharge.confirm')}</Text>
           </TouchableOpacity>
         </View>
       )}

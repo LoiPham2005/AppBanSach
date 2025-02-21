@@ -28,6 +28,8 @@ router.post('/refresh-token', future_user.refreshToken); // refresh token
 // Thêm route để cập nhật thông tin user
 router.patch('/users/edit/:id', future_user.editUser);
 router.get('/users/getAdmin', future_user.getAdmin);
+// Add this with other user routes
+router.put('/users/change-password/:id', future_user.changePassword);
 
 // quên mật khẩu
 router.post('/check/sendOtp', forgotPassword.sendOtp);

@@ -4,16 +4,12 @@ import { Feather } from '@expo/vector-icons';
 import { useTheme } from '../context/ThemeContext';
 
 const NetworkAlert = () => {
-  const { theme } = useTheme();
-  
   return (
     <View style={styles.overlay}>
       <View style={styles.container}>
         <Feather name="wifi-off" size={50} color="#666" />
-        <Text style={styles.title}>Không có kết nối mạng</Text>
-        <Text style={styles.message}>
-          Vui lòng kiểm tra kết nối internet của bạn và thử lại
-        </Text>
+        <Text style={styles.title}>{t('network.noConnection')}</Text>
+        <Text style={styles.message}>{t('network.checkConnection')}</Text>
       </View>
     </View>
   );

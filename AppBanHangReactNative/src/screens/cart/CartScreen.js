@@ -71,11 +71,11 @@ const CartScreen = ({ navigation }) => {
       t('cart.confirmDeleteMessage'),
       [
         {
-          text: t('common.cancel'),
+          text: t('cart.no'),
           style: 'cancel'
         },
         {
-          text: t('common.delete'),
+          text: t('cart.yes'),
           style: 'destructive',
           onPress: async () => {
             try {
