@@ -6,8 +6,16 @@ import Input from '../../../components/Input';
 import LoadingOverlay from '../../../components/LoadingOverlay';
 import { API_URL } from '../../../services/URL_API';
 import { forgotPassService } from '../../../services/ForgotPassService';
+<<<<<<< HEAD
 
 export default function EnterEmail({ navigation }) {
+=======
+import { useTranslation } from 'react-i18next';
+
+export default function EnterEmail({ navigation }) {
+  
+  const { t } = useTranslation();
+>>>>>>> origin/dev
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { theme } = useTheme();
@@ -47,19 +55,28 @@ export default function EnterEmail({ navigation }) {
           <Feather name="arrow-left" size={24} color={theme.textColor} />
         </TouchableOpacity>
         <Text style={[styles.headerTitle, { color: theme.textColor }]}>
+<<<<<<< HEAD
           Quên mật khẩu
+=======
+          {t('auth.forgotPassword.title')}
+>>>>>>> origin/dev
         </Text>
         <View style={{ width: 24 }} />
       </View>
 
       <View style={styles.content}>
         <Text style={[styles.description, { color: theme.textColor }]}>
+<<<<<<< HEAD
           Nhập email của bạn để nhận mã xác thực
+=======
+          {t('auth.forgotPassword.description')}
+>>>>>>> origin/dev
         </Text>
         
         <Input
           value={email}
           onChangeText={setEmail}
+<<<<<<< HEAD
           placeholder="Email"
           keyboardType="email-address"
         />
@@ -70,6 +87,23 @@ export default function EnterEmail({ navigation }) {
       </View>
 
       <LoadingOverlay visible={isLoading} message="Đang gửi mã..." />
+=======
+          placeholder={t('auth.forgotPassword.email')}
+          keyboardType="email-address"
+        />
+
+        <TouchableOpacity onPress={handleSubmit}
+        style ={styles.submitButton}
+        >
+          <Text>{t('auth.forgotPassword.sendCode')}</Text>
+        </TouchableOpacity>
+      </View>
+
+      <LoadingOverlay 
+        visible={isLoading} 
+        message={t('auth.forgotPassword.sending')}
+      />
+>>>>>>> origin/dev
     </View>
   );
 }
@@ -83,6 +117,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 16,
+<<<<<<< HEAD
+=======
+    marginTop: 20
+>>>>>>> origin/dev
   },
   headerTitle: {
     fontSize: 18,

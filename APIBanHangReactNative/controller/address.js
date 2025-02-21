@@ -31,7 +31,6 @@ module.exports = {
 
     add: async (req, res) => {
         try {
-            // Kiểm tra id_user có tồn tại không
             if (!req.body.id_user) {
                 return res.status(400).json({
                     "status": 400,
@@ -39,19 +38,10 @@ module.exports = {
                     "data": []
                 });
             }
-    
+
             const model = new modelAddress(req.body);
-            
-            // Nếu địa chỉ này được đặt làm mặc định
-            if (model.chooseDefault) {
-                // Cập nhật tất cả địa chỉ khác của user này thành không mặc định
-                await modelAddress.updateMany(
-                    { id_user: model.id_user }, 
-                    { chooseDefault: false }
-                );
-            }
-    
             const result = await model.save();
+
             if (result) {
                 res.json({
                     "status": 200,
@@ -73,9 +63,8 @@ module.exports = {
     // lấy toàn bộ dữ liệu ra
     list: async (req, res) => {
         try {
-            const result = await modelAddress.find();
-            // res.send(result);
-
+            // Sửa lại để lấy địa chỉ theo id_user
+            const result = await modelAddress.find({ id_user: req.query.id_user });
             if (result) {
                 res.json({
                     "status": 200,
@@ -90,8 +79,8 @@ module.exports = {
                 });
             }
         } catch (err) {
-            console.error("Error while fetching users:", err); // In l��i chi tiết ra console
-            res.status(500).send({ error: 'An error occurred while fetching data' }); // Trả về l��i cho client
+            console.error("Error while fetching addresses:", err);
+            res.status(500).send({ error: 'An error occurred while fetching data' });
         }
     },
 

@@ -66,8 +66,13 @@ const CustomDrawerContent = (props) => {
 
   const handleLogout = () => {
     Alert.alert(
+<<<<<<< HEAD
       t('logout'),  // "Đăng xuất"
       t('logoutConfirmMessage'), // Add this to translations: "Bạn có chắc chắn muốn đăng xuất?"
+=======
+      t('drawer.logout'),  // "Đăng xuất"
+      t('drawer.logoutConfirmMessage'), // Add this to translations: "Bạn có chắc chắn muốn đăng xuất?"
+>>>>>>> origin/dev
       [
         {
           text: t('common.cancel'), // "Hủy"
@@ -97,13 +102,21 @@ const CustomDrawerContent = (props) => {
   const commonMenuItems = () => (
     <>
       <DrawerItem
+<<<<<<< HEAD
         label={t('home')}
+=======
+        label={t('drawer.home')}
+>>>>>>> origin/dev
         labelStyle={{ color: theme.textColor }}
         icon={({ size }) => <Feather name="home" size={size} color={theme.textColor} />}
         onPress={() => props.navigation.navigate('Home')}
       />
       <DrawerItem
+<<<<<<< HEAD
         label={t('profileName')}
+=======
+        label={t('drawer.profile')}
+>>>>>>> origin/dev
         labelStyle={{ color: theme.textColor }}
         icon={({ size }) => <Feather name="user" size={size} color={theme.textColor} />}
         onPress={() => props.navigation.navigate('Profile')}
@@ -115,13 +128,21 @@ const CustomDrawerContent = (props) => {
   const userMenuItems = () => (
     <>
      <DrawerItem
+<<<<<<< HEAD
         label={t('cartName')}
+=======
+        label={t('drawer.cart')}
+>>>>>>> origin/dev
         labelStyle={{ color: theme.textColor }}
         icon={({ size }) => <Feather name="shopping-cart" size={size} color={theme.textColor} />}
         onPress={() => props.navigation.navigate('Cart')}
       />
       <DrawerItem
+<<<<<<< HEAD
         label={t('orderName')}
+=======
+        label={t('drawer.orders')}
+>>>>>>> origin/dev
         labelStyle={{ color: theme.textColor }}
         icon={({ size }) => <Feather name="list" size={size} color={theme.textColor} />}
         onPress={() => props.navigation.navigate('Order')}
@@ -133,25 +154,41 @@ const CustomDrawerContent = (props) => {
   const adminMenuItems = () => (
     <>
       <DrawerItem
+<<<<<<< HEAD
         label={t('orderMana')}
+=======
+        label={t('drawer.orderManagement')}
+>>>>>>> origin/dev
         labelStyle={{ color: theme.textColor }}
         icon={({ size }) => <Feather name="list" size={size} color={theme.textColor} />}
         onPress={() => props.navigation.navigate('OrderMana')}
       />
       <DrawerItem
+<<<<<<< HEAD
         label={t('account')}
+=======
+        label={t('drawer.accountManagement')}
+>>>>>>> origin/dev
         labelStyle={{ color: theme.textColor }}
         icon={({ size }) => <Feather name="users" size={size} color={theme.textColor} />}
         onPress={() => props.navigation.navigate('Account')}
       />
       <DrawerItem
+<<<<<<< HEAD
         label={t('productMana')}
+=======
+        label={t('drawer.productManagement')}
+>>>>>>> origin/dev
         labelStyle={{ color: theme.textColor }}
         icon={({ size }) => <Feather name="box" size={size} color={theme.textColor} />}
         onPress={() => props.navigation.navigate('Product')}
       />
       <DrawerItem
+<<<<<<< HEAD
         label={t('statistics')}
+=======
+        label={t('drawer.statistics')}
+>>>>>>> origin/dev
         labelStyle={{ color: theme.textColor }}
         icon={({ size }) => <Feather name="bar-chart-2" size={size} color={theme.textColor} />}
         onPress={() => props.navigation.navigate('Statistics')}
@@ -163,19 +200,31 @@ const CustomDrawerContent = (props) => {
   const settingsItems = () => (
     <>
       <DrawerItem
+<<<<<<< HEAD
         label={t('settings')}
+=======
+        label={t('drawer.settings')}
+>>>>>>> origin/dev
         labelStyle={{ color: theme.textColor }}
         icon={({ size }) => <Feather name="settings" size={size} color={theme.textColor} />}
         onPress={() => props.navigation.navigate('Settings')}
       />
       <DrawerItem
+<<<<<<< HEAD
         label={t('support')}
+=======
+        label={t('drawer.support')}
+>>>>>>> origin/dev
         labelStyle={{ color: theme.textColor }}
         icon={({ size }) => <Feather name="help-circle" size={size} color={theme.textColor} />}
         onPress={() => props.navigation.navigate('Support')}
       />
       <DrawerItem
+<<<<<<< HEAD
         label={t('aboutUs')}
+=======
+        label={t('drawer.aboutUs')}
+>>>>>>> origin/dev
         labelStyle={{ color: theme.textColor }}
         icon={({ size }) => <Feather name="info" size={size} color={theme.textColor} />}
         onPress={() => props.navigation.navigate('AboutUs')}
@@ -214,12 +263,17 @@ const CustomDrawerContent = (props) => {
 
       {/* Section divider */}
       <View style={[styles.sectionDivider, { backgroundColor: isDarkMode ? '#333' : '#f6f6f6' }]}>
+<<<<<<< HEAD
         <Text style={[styles.sectionText, { color: theme.textColor }]}>{t('other')}</Text>
+=======
+        <Text style={[styles.sectionText, { color: theme.textColor }]}>{t('drawer.other')}</Text>
+>>>>>>> origin/dev
       </View>
 
       {/* Common Settings Items */}
       {settingsItems()}
 
+<<<<<<< HEAD
       {/* đổi ngôn ngữ */}
       <View style={styles.darkModeContainer}>
         <View style={styles.darkModeRow}>
@@ -275,6 +329,15 @@ const CustomDrawerContent = (props) => {
 
       <DrawerItem
         label={t('logout')}
+=======
+      {/* Section divider */}
+      <View style={[styles.sectionDivider, { backgroundColor: isDarkMode ? '#333' : '#f6f6f6' }]}>
+        <Text style={[styles.sectionText, { color: theme.textColor }]}>{t('drawer.exit')}</Text>
+      </View>
+
+      <DrawerItem
+        label={t('drawer.logout')}
+>>>>>>> origin/dev
         labelStyle={{ color: theme.textColor }}
         icon={({ size }) => <Feather name="log-out" size={size} color={theme.textColor} />}
         onPress={handleLogout} // Use the new handleLogout function
@@ -313,8 +376,13 @@ const DrawerNavigator = () => {
         component={HomeScreen}
         options={{
           headerShown: false,
+<<<<<<< HEAD
           title: t('home'),
           drawerLabel: t('home'),
+=======
+          title: t('drawer.home'),
+          drawerLabel: t('drawer.home'),
+>>>>>>> origin/dev
           drawerIcon: () => <Feather name="home" size={24} color="black" />
         }}
       />
@@ -322,8 +390,13 @@ const DrawerNavigator = () => {
         name="Cart"
         component={CartScreen}
         options={{
+<<<<<<< HEAD
           title: t('cartName'),
           drawerLabel: t('cart'),
+=======
+          title: t('drawer.cart'),
+          drawerLabel: t('drawer.cart'),
+>>>>>>> origin/dev
           drawerIcon: () => <Feather name="shopping-cart" size={24} color="black" />
         }}
       />
@@ -331,8 +404,13 @@ const DrawerNavigator = () => {
         name="Order"
         component={OrderScreen}
         options={{
+<<<<<<< HEAD
           title: t('orderName'),
           drawerLabel: t('order'),
+=======
+          title: t('drawer.orders'),
+          drawerLabel: t('drawer.orders'),
+>>>>>>> origin/dev
           drawerIcon: () => <Feather name="file-text" size={24} color={theme.textColor} />
         }}
       />
@@ -340,8 +418,13 @@ const DrawerNavigator = () => {
         name="Profile"
         component={ProfileScreen}
         options={{
+<<<<<<< HEAD
           title: t('profileName'),
           drawerLabel: t('profile'),
+=======
+          title: t('drawer.profile'),
+          drawerLabel: t('drawer.profile'),
+>>>>>>> origin/dev
           drawerIcon: () => <Feather name="user" size={24} color={theme.textColor} />
         }}
       />
@@ -349,8 +432,13 @@ const DrawerNavigator = () => {
         name="OrderMana"
         component={OrderManagerScreen}
         options={{
+<<<<<<< HEAD
           title: t('orderMana'),
           drawerLabel: t('orderMana'),
+=======
+          title: t('drawer.orderManagement'),
+          drawerLabel: t('drawer.orderManagement'),
+>>>>>>> origin/dev
           drawerIcon: () => <Feather name="user" size={24} color={theme.textColor} />
         }}
       />
@@ -358,8 +446,13 @@ const DrawerNavigator = () => {
         name="Account"
         component={AccountScreen}
         options={{
+<<<<<<< HEAD
           title: t('account'),
           drawerLabel: t('account'),
+=======
+          title: t('drawer.accountManagement'),
+          drawerLabel: t('drawer.accountManagement'),
+>>>>>>> origin/dev
           drawerIcon: () => <Feather name="user" size={24} color="black" />
         }}
       />
@@ -367,8 +460,13 @@ const DrawerNavigator = () => {
         name="Product"
         component={ProductScreen}
         options={{
+<<<<<<< HEAD
           title: t('product'),
           drawerLabel: t('product'),
+=======
+          title: t('drawer.productManagement'),
+          drawerLabel: t('drawer.productManagement'),
+>>>>>>> origin/dev
           drawerIcon: () => <Feather name="box" size={24} color="black" />
         }}
       />
@@ -376,8 +474,13 @@ const DrawerNavigator = () => {
         name="Statistics"
         component={StatisticsScreen}
         options={{
+<<<<<<< HEAD
           title: t('statistics'),
           drawerLabel: t('statistics'),
+=======
+          title: t('drawer.statistics'),
+          drawerLabel: t('drawer.statistics'),
+>>>>>>> origin/dev
           drawerIcon: () => <Feather name="bar-chart-2" size={24} color="black" />
         }}
       />
@@ -386,8 +489,13 @@ const DrawerNavigator = () => {
         name="Settings"
         component={SettingsScreen}
         options={{
+<<<<<<< HEAD
           title: t('settings'),
           drawerLabel: t('settings'),
+=======
+          title: t('drawer.settings'),
+          drawerLabel: t('drawer.settings'),
+>>>>>>> origin/dev
           drawerIcon: () => <Feather name="settings" size={24} color="black" />
         }}
       />
@@ -395,8 +503,13 @@ const DrawerNavigator = () => {
         name="Support"
         component={SupportScreen}
         options={{
+<<<<<<< HEAD
           title: t('support'),
           drawerLabel: t('support'),
+=======
+          title: t('drawer.support'),
+          drawerLabel: t('drawer.support'),
+>>>>>>> origin/dev
           drawerIcon: () => <Feather name="help-circle" size={24} color="black" />
         }}
       />
@@ -404,8 +517,13 @@ const DrawerNavigator = () => {
         name="AboutUs"
         component={AboutUsScreen}
         options={{
+<<<<<<< HEAD
           title: t('aboutUs'),
           drawerLabel: t('aboutUs'),
+=======
+          title: t('drawer.aboutUs'),
+          drawerLabel: t('drawer.aboutUs'),
+>>>>>>> origin/dev
           drawerIcon: () => <Feather name="info" size={24} color="black" />
         }}
       />
@@ -413,8 +531,13 @@ const DrawerNavigator = () => {
         name="Logout"
         component={LogoutScreen}
         options={{
+<<<<<<< HEAD
           title: t('logout'),
           drawerLabel: t('logout'),
+=======
+          title: t('drawer.logout'),
+          drawerLabel: t('drawer.logout'),
+>>>>>>> origin/dev
           drawerIcon: () => <Feather name="log-out" size={24} color="black" />,
           onPress: () => {
             navigation.navigate('Login');

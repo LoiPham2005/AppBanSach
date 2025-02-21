@@ -87,18 +87,18 @@ module.exports = {
             if (!user) {
                 return res.status(400).json({ message: 'User not found' });
             }
-    
+
             const isMatch = await bcrypt.compare(req.body.password, user.password);
             if (!isMatch) {
                 return res.status(400).json({ message: 'Incorrect password' });
             }
-    
+
             const { accessToken, refreshToken } = generateAuthToken(user._id);
             user.accessToken = accessToken;
             user.refreshToken = refreshToken;
-    
+
             await user.save();
-    
+
             // Trả về đầy đủ thông tin user
             res.json({
                 user: {
@@ -114,7 +114,7 @@ module.exports = {
                 accessToken,
                 refreshToken
             });
-            
+
         } catch (error) {
             console.error('Login error:', error);
             res.status(500).json({ message: 'Server error' });
@@ -173,11 +173,11 @@ module.exports = {
     editUser: async (req, res) => {
         try {
             const result = await md.findByIdAndUpdate(
-                req.params.id, 
+                req.params.id,
                 req.body,
                 { new: true }
             );
-            
+
             if (result) {
                 res.json({
                     "status": 200,
@@ -222,6 +222,53 @@ module.exports = {
             res.status(500).json({
                 status: 500,
                 message: "Error getting admin user",
+                error: error.message
+            });
+        }
+    },
+
+    // Add this to the module.exports object
+    changePassword: async (req, res) => {
+        try {
+            const { oldPassword, newPassword } = req.body;
+            const userId = req.params.id;
+
+            // Find user
+            const user = await md.findById(userId);
+            if (!user) {
+                return res.status(404).json({
+                    status: 404,
+                    message: "Không tìm thấy người dùng"
+                });
+            }
+
+            // Verify old password
+            const isMatch = await bcrypt.compare(oldPassword, user.password);
+            if (!isMatch) {
+                return res.status(400).json({
+                    status: 400,
+                    message: "Mật khẩu cũ không đúng"
+                });
+            }
+
+            // Hash new password
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+            // Update password
+            user.password = hashedPassword;
+            await user.save();
+
+            res.json({
+                status: 200,
+                message: "Đổi mật khẩu thành công"
+            });
+
+        } catch (error) {
+            console.error("Error changing password:", error);
+            res.status(500).json({
+                status: 500,
+                message: "Lỗi server",
                 error: error.message
             });
         }

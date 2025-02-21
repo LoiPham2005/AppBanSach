@@ -1,15 +1,29 @@
 // src/components/LoadingOverlay.js
 import React from 'react';
 import { View, ActivityIndicator, Text, StyleSheet } from 'react-native';
+<<<<<<< HEAD
 
 const LoadingOverlay = ({ visible, message }) => {
+=======
+import { useTranslation } from 'react-i18next'; // Add this import
+
+const LoadingOverlay = ({ visible, message }) => {
+  const { t } = useTranslation(); // Add this hook
+
+>>>>>>> origin/dev
   if (!visible) return null;
 
   return (
     <View style={styles.container}>
       <View style={styles.loadingBox}>
         <ActivityIndicator size="large" color="#ffffff" />
+<<<<<<< HEAD
         <Text style={styles.message}>{message}</Text>
+=======
+        <Text style={styles.message}>
+          {message || t('common.loading')}
+        </Text>
+>>>>>>> origin/dev
       </View>
     </View>
   );

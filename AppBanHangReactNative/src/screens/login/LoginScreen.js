@@ -108,19 +108,33 @@ const LoginScreen = ({navigation}) => {
                     keyboardShouldPersistTaps="handled"
                 >
                     <View style={styles.contentContainer}>
+<<<<<<< HEAD
                         <Text style={[styles.titleStyle, theme.textColor]}>{t('loginTitle')}</Text>
+=======
+                        <Text style={[styles.titleStyle, { color: theme.textColor }]}>
+                            {t('auth.login.title')}
+                        </Text>
+>>>>>>> origin/dev
 
                         <Input
                             value={email}
                             onChangeText={setEmail}
+<<<<<<< HEAD
                             placeholder={t('emailText')}
+=======
+                            placeholder={t('auth.login.email')}
+>>>>>>> origin/dev
                             error={errors.email}
                         />
 
                         <Input
                             value={password}
                             onChangeText={setPassword}
+<<<<<<< HEAD
                             placeholder={t('passText')}
+=======
+                            placeholder={t('auth.login.password')}
+>>>>>>> origin/dev
                             secureTextEntry={true}
                             error={errors.password}
                         />
@@ -129,29 +143,48 @@ const LoginScreen = ({navigation}) => {
                             style={styles.touchForgot}
                             onPress={handleForgotPassword}
                         >
+<<<<<<< HEAD
                             <Text style={styles.textForgot}>{t('forgotPass')}</Text>
+=======
+                            <Text style={styles.textForgot}>{t('auth.login.forgotPassword')}</Text>
+>>>>>>> origin/dev
                         </TouchableOpacity>
 
                         <TouchableOpacity 
                             style={styles.touchLogin}
                             onPress={handleLogin}
                         >
+<<<<<<< HEAD
                             <Text style={styles.textLogin}>{t('buttonText')}</Text>
+=======
+                            <Text style={styles.textLogin}>{t('auth.login.loginButton')}</Text>
+>>>>>>> origin/dev
                         </TouchableOpacity>
                     </View>
                 </ScrollView>
 
                 <View style={styles.asks}>
+<<<<<<< HEAD
                     <Text>{t('askAccount')}</Text>
                     <TouchableOpacity onPress={handlePress}>
                         <Text style={styles.textRegister}> {t('registerName')}</Text>
+=======
+                    <Text>{t('auth.login.noAccount')}</Text>
+                    <TouchableOpacity onPress={handlePress}
+                        style={{marginLeft: 5}}>
+                        <Text style={styles.textRegister}>{t('auth.login.register')}</Text>
+>>>>>>> origin/dev
                     </TouchableOpacity>
                 </View>
             </KeyboardAvoidingView>
             
             <LoadingOverlay 
                 visible={isLoading} 
+<<<<<<< HEAD
                 message={t('login.loggingIn')} 
+=======
+                message={t('auth.login.loggingIn')} 
+>>>>>>> origin/dev
             />
         </>
     );

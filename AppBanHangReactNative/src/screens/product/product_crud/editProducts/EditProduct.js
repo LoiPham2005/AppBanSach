@@ -33,10 +33,17 @@ const EditProduct = ({ route, navigation }) => {
 
   // Status options
   const statusOptions = [
+<<<<<<< HEAD
     { label: t('active'), value: 'active' },
     { label: t('outOfStock'), value: 'out of stock' },
     { label: t('importingGoods'), value: 'importing goods' },
     { label: t('stopSelling'), value: 'stop selling' },
+=======
+    { label: t('product.active'), value: 'active' },
+    { label: t('product.outOfStock'), value: 'out of stock' },
+    { label: t('product.importingGoods'), value: 'importing goods' },
+    { label: t('product.stopSelling'), value: 'stop selling' },
+>>>>>>> origin/dev
   ];
 
   // Fetch categories when component mounts
@@ -149,14 +156,57 @@ const EditProduct = ({ route, navigation }) => {
   };
 
   const handleSubmit = async () => {
+<<<<<<< HEAD
     if (!title || !author || !price || !description || !category || !status || mediaFiles.length === 0) {
       Alert.alert(t('common.error'), t('editProduct.fillAllFields'));
+=======
+    // if (!title || !author || !price || !description || !category || !status || mediaFiles.length === 0) {
+    //   Alert.alert(t('common.error'), t('editProduct.fillAllFields'));
+    //   return;
+    // }
+
+    if (!title.trim()) {
+      Alert.alert(t('common.error'), t('editProduct.titleRequired'));
+      return;
+    }
+    if (!author.trim()) {
+      Alert.alert(t('common.error'), t('editProduct.authorRequired'));
+      return;
+    }
+    if (!price.trim() || isNaN(price) || parseFloat(price) <= 0) {
+      Alert.alert(t('common.error'), t('editProduct.priceInvalid'));
+      return;
+    }
+    if (!quantity.trim() || isNaN(quantity) || parseInt(quantity) < 0) {
+      Alert.alert(t('common.error'), t('editProduct.quantityInvalid'));
+      return;
+    }
+    if (!description.trim()) {
+      Alert.alert(t('common.error'), t('editProduct.descriptionRequired'));
+      return;
+    }
+    if (!category) {
+      Alert.alert(t('common.error'), t('editProduct.categoryRequired'));
+      return;
+    }
+    if (!status) {
+      Alert.alert(t('common.error'), t('editProduct.statusRequired'));
+      return;
+    }
+    if (mediaFiles.length === 0) {
+      Alert.alert(t('common.error'), t('editProduct.mediaRequired'));
+>>>>>>> origin/dev
       return;
     }
 
     Alert.alert(
+<<<<<<< HEAD
       t('editProduct.confirmTitle'),
       t('editProduct.confirmMessage'),
+=======
+      t('productManagement.editProduct.confirmTitle'),
+      t('productManagement.editProduct.confirmMessage'),
+>>>>>>> origin/dev
       [
         { text: t('common.cancel'), style: 'cancel' },
         {
@@ -199,9 +249,15 @@ const EditProduct = ({ route, navigation }) => {
               if (result.status === 200) {
                 Alert.alert(
                   t('common.success'),
+<<<<<<< HEAD
                   t('editProduct.success'),
                   [{ 
                     text: 'OK', 
+=======
+                  t('productManagement.editProduct.success'),
+                  [{
+                    text: 'OK',
+>>>>>>> origin/dev
                     onPress: () => {
                       navigation.goBack();
                       navigation.getParent()?.setParams({ refresh: Date.now() });
@@ -209,11 +265,19 @@ const EditProduct = ({ route, navigation }) => {
                   }]
                 );
               } else {
+<<<<<<< HEAD
                 Alert.alert(t('common.error'), t('editProduct.error'));
               }
             } catch (error) {
               console.error("Error updating product:", error);
               Alert.alert(t('common.error'), t('editProduct.error'));
+=======
+                Alert.alert(t('common.error'), t('productManagement.editProduct.error'));
+              }
+            } catch (error) {
+              console.error("Error updating product:", error);
+              Alert.alert(t('common.error'), t('productManagement.editProduct.error'));
+>>>>>>> origin/dev
             } finally {
               setIsLoading(false);
             }
@@ -247,7 +311,11 @@ const EditProduct = ({ route, navigation }) => {
     <>
       <ScrollView>
         <View style={styles.container}>
+<<<<<<< HEAD
           <Text style={styles.title}>{t('editProduct.title')}</Text>
+=======
+          <Text style={styles.title}>{t('productManagement.editProduct.title')}</Text>
+>>>>>>> origin/dev
 
           {mediaFiles.map((media, index) => (
             <View key={index}>
@@ -287,14 +355,22 @@ const EditProduct = ({ route, navigation }) => {
             onChangeText={setTitle}
             placeholder={t('title')}
           />
+<<<<<<< HEAD
           
+=======
+
+>>>>>>> origin/dev
           <TextInput
             style={styles.input}
             value={author}
             onChangeText={setAuthor}
             placeholder={t('author')}
           />
+<<<<<<< HEAD
           
+=======
+
+>>>>>>> origin/dev
           <TextInput
             style={styles.input}
             value={price}
@@ -302,7 +378,11 @@ const EditProduct = ({ route, navigation }) => {
             keyboardType="numeric"
             placeholder={t('price')}
           />
+<<<<<<< HEAD
           
+=======
+
+>>>>>>> origin/dev
           <TextInput
             style={styles.input}
             value={description}
@@ -310,7 +390,11 @@ const EditProduct = ({ route, navigation }) => {
             placeholder={t('description')}
             multiline
           />
+<<<<<<< HEAD
           
+=======
+
+>>>>>>> origin/dev
           <TextInput
             style={styles.input}
             value={quantity}
@@ -318,7 +402,11 @@ const EditProduct = ({ route, navigation }) => {
             keyboardType="numeric"
             placeholder={t('quantity')}
           />
+<<<<<<< HEAD
           
+=======
+
+>>>>>>> origin/dev
           <RNPickerSelect
             placeholder={{ label: t('selectCategory'), value: null }}
             items={categories}
@@ -347,7 +435,11 @@ const EditProduct = ({ route, navigation }) => {
 
       <LoadingOverlay
         visible={isLoading}
+<<<<<<< HEAD
         message={t('editProduct.uploading')}
+=======
+        message={t('productManagement.editProduct.uploading')}
+>>>>>>> origin/dev
       />
     </>
   );

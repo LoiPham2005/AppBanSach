@@ -3,10 +3,18 @@ import React from 'react';
 import { useNavigation, CommonActions } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 import { useTheme } from '../../context/ThemeContext';
+<<<<<<< HEAD
+=======
+import { useTranslation } from 'react-i18next';
+>>>>>>> origin/dev
 
 export default function SuccessfulPayment() {
   const navigation = useNavigation();
   const { theme } = useTheme();
+<<<<<<< HEAD
+=======
+  const { t } = useTranslation();
+>>>>>>> origin/dev
 
   const handleContinueShopping = () => {
     // Reset navigation stack and go to Home
@@ -22,17 +30,30 @@ export default function SuccessfulPayment() {
     <View style={[styles.container, { backgroundColor: theme.backgroundColor }]}>
       <Feather name="check-circle" size={80} color="#4CAF50" />
       <Text style={[styles.title, { color: theme.textColor }]}>
+<<<<<<< HEAD
         Thanh toán thành công!
       </Text>
       <Text style={[styles.subtitle, { color: theme.textColor }]}>
         Cảm ơn bạn đã mua hàng
+=======
+        {t('successPayment.title')}
+      </Text>
+      <Text style={[styles.subtitle, { color: theme.textColor }]}>
+        {t('successPayment.subtitle')}
+>>>>>>> origin/dev
       </Text>
       
       <TouchableOpacity 
         style={styles.button}
         onPress={handleContinueShopping}
       >
+<<<<<<< HEAD
         <Text style={styles.buttonText}>Tiếp tục mua hàng</Text>
+=======
+        <Text style={styles.buttonText}>
+          {t('successPayment.continueShopping')}
+        </Text>
+>>>>>>> origin/dev
       </TouchableOpacity>
     </View>
   );

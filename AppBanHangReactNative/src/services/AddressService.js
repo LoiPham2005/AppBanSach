@@ -2,9 +2,15 @@ import { API_URL } from './URL_API';
 
 export const addressService = {
   // Lấy danh sách sản phẩm
+<<<<<<< HEAD
   getAddress: async () => {
     try {
       const response = await fetch(`${API_URL}/api/address/list`);
+=======
+  getAddress: async (userId) => {
+    try {
+      const response = await fetch(`${API_URL}/api/address/list?id_user=${userId}`);
+>>>>>>> origin/dev
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -21,7 +27,11 @@ export const addressService = {
         };
       }
     } catch (error) {
+<<<<<<< HEAD
       console.error("Error fetching category:", error);
+=======
+      console.error("Error fetching addresses:", error);
+>>>>>>> origin/dev
       return {
         success: false,
         message: error.message

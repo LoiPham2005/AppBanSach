@@ -1,28 +1,70 @@
 import { View, Text, StyleSheet, TouchableOpacity, FlatList, Alert, Modal } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { Feather } from '@expo/vector-icons'
+<<<<<<< HEAD
 import { useNavigation, useRoute } from '@react-navigation/native'; // Thêm useRoute
+=======
+import { useNavigation, useRoute } from '@react-navigation/native'
+>>>>>>> origin/dev
 import { useTheme } from '../../../context/ThemeContext'
 import { addressService } from '../../../services/AddressService'
 import LoadingOverlay from '../../../components/LoadingOverlay'
 import EditAddress from './edit_address/EditAddress'
+<<<<<<< HEAD
 
 export default function AddressScreen() {
+=======
+import { useTranslation } from 'react-i18next'
+// Thêm import AsyncStorage
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
+export default function AddressScreen() {
+  const { t } = useTranslation();
+>>>>>>> origin/dev
   const navigation = useNavigation()
   const route = useRoute(); // Thêm dòng này
   const { theme } = useTheme()
   const [addresses, setAddresses] = useState([])
   const [loading, setLoading] = useState(false)
+<<<<<<< HEAD
     const [selectedItem, setSelectedItem] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   useEffect(() => {
     fetchAddresses()
     
+=======
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    const getUserId = async () => {
+      try {
+        const id = await AsyncStorage.getItem('userId');
+        setUserId(id);
+      } catch (error) {
+        console.error('Error getting userId:', error);
+      }
+    };
+    getUserId();
+  }, []);
+
+  useEffect(() => {
+    if (userId) {
+      fetchAddresses();
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    fetchAddresses()
+
+>>>>>>> origin/dev
     // Refresh list when returning from AddEditAddress
     const unsubscribe = navigation.addListener('focus', () => {
       fetchAddresses()
     })
+<<<<<<< HEAD
     
     return unsubscribe
   }, [])
@@ -31,6 +73,32 @@ export default function AddressScreen() {
     try {
       setLoading(true)
       const response = await addressService.getAddress()
+=======
+
+    return unsubscribe
+  }, [])
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      // Kiểm tra params có shouldRefresh không
+      const shouldRefresh = route.params?.shouldRefresh;
+      if (shouldRefresh && userId) {
+        fetchAddresses();
+        // Reset param
+        navigation.setParams({ shouldRefresh: false });
+      }
+    });
+
+    return unsubscribe;
+  }, [navigation, route.params?.shouldRefresh, userId]);
+
+  const fetchAddresses = async () => {
+    if (!userId) return;
+
+    try {
+      setLoading(true)
+      const response = await addressService.getAddress(userId)
+>>>>>>> origin/dev
       if (response.success) {
         setAddresses(response.data)
       }
@@ -41,7 +109,11 @@ export default function AddressScreen() {
     }
   }
 
+<<<<<<< HEAD
     const renderItem = ({ item }) => (
+=======
+  const renderItem = ({ item }) => (
+>>>>>>> origin/dev
     <View style={[styles.addressCard, { backgroundColor: theme.backgroundColor }]}>
       <View style={styles.addressContent}>
         <View style={styles.addressInfo}>
@@ -50,15 +122,24 @@ export default function AddressScreen() {
             {`${item.receivingAddress}, ${item.commune}, ${item.district}, ${item.province}`}
           </Text>
           <Text style={[styles.phone, { color: theme.textColor }]}>{item.phone}</Text>
+<<<<<<< HEAD
           <TouchableOpacity 
+=======
+          <TouchableOpacity
+>>>>>>> origin/dev
             style={styles.useButton}
             onPress={() => handleUseAddress(item)}
           >
             <Text style={styles.useButtonText}>Sử dụng</Text>
           </TouchableOpacity>
         </View>
+<<<<<<< HEAD
         <TouchableOpacity 
         onPress={() => handleMorePress(item)}>
+=======
+        <TouchableOpacity
+          onPress={() => handleMorePress(item)}>
+>>>>>>> origin/dev
           <Feather name="more-vertical" size={24} color={theme.textColor} />
         </TouchableOpacity>
       </View>
@@ -78,6 +159,7 @@ export default function AddressScreen() {
   const handleSetDefault = () => {
     setIsModalVisible(false);
     Alert.alert(
+<<<<<<< HEAD
       'Xác nhận',
       'Bạn có muốn đặt địa chỉ này làm mặc định không?',
       [
@@ -87,6 +169,17 @@ export default function AddressScreen() {
         },
         {
           text: 'Đồng ý',
+=======
+      t('common.confirm'),
+      t('address.setDefault.confirm'),
+      [
+        {
+          text: t('common.cancel'),
+          style: 'cancel'
+        },
+        {
+          text: t('common.confirm'),
+>>>>>>> origin/dev
           onPress: async () => {
             try {
               setLoading(true);
@@ -117,6 +210,7 @@ export default function AddressScreen() {
   const handleDelete = () => {
     setIsModalVisible(false);
     Alert.alert(
+<<<<<<< HEAD
       'Xác nhận xóa',
       'Bạn có chắc chắn muốn xóa địa chỉ này không?',
       [
@@ -126,6 +220,17 @@ export default function AddressScreen() {
         },
         {
           text: 'Xóa',
+=======
+      t('address.delete.title'),
+      t('address.delete.message'),
+      [
+        {
+          text: t('common.cancel'),
+          style: 'cancel'
+        },
+        {
+          text: t('address.delete.confirm'),
+>>>>>>> origin/dev
           style: 'destructive',
           onPress: async () => {
             try {
@@ -150,8 +255,13 @@ export default function AddressScreen() {
   const handleUseAddress = (address) => {
     const fullAddress = `${address.fullName}, ${address.phone}, ${address.receivingAddress}, ${address.commune}, ${address.district}, ${address.province}`;
     const returnParams = route.params?.returnParams || {};
+<<<<<<< HEAD
     
     navigation.navigate('OrderPayment', { 
+=======
+
+    navigation.navigate('OrderPayment', {
+>>>>>>> origin/dev
       selectedAddress: fullAddress,
       // Trả về các params đã lưu
       ...returnParams
@@ -165,7 +275,11 @@ export default function AddressScreen() {
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Feather name="arrow-left" size={24} color={theme.textColor} />
         </TouchableOpacity>
+<<<<<<< HEAD
         <Text style={[styles.headerTitle, { color: theme.textColor }]}>Địa chỉ</Text>
+=======
+        <Text style={[styles.headerTitle, { color: theme.textColor }]}>{t('address.title')}</Text>
+>>>>>>> origin/dev
         <TouchableOpacity onPress={() => navigation.navigate('AddAddress')}>
           <Feather name="plus" size={24} color={theme.textColor} />
         </TouchableOpacity>
@@ -198,6 +312,7 @@ export default function AddressScreen() {
           <View style={styles.modalContent}>
             <TouchableOpacity
               style={styles.modalItem}
+<<<<<<< HEAD
               onPress={handleSetDefault}
             >
               <Feather name="star" size={20} color="#000" />
@@ -206,6 +321,8 @@ export default function AddressScreen() {
             
             <TouchableOpacity
               style={styles.modalItem}
+=======
+>>>>>>> origin/dev
               onPress={handleEdit}
             >
               <Feather name="edit" size={20} color="#000" />
@@ -217,7 +334,11 @@ export default function AddressScreen() {
               onPress={handleDelete}
             >
               <Feather name="trash-2" size={20} color="red" />
+<<<<<<< HEAD
               <Text style={[styles.modalText, { color: 'red' }]}>Xóa</Text>
+=======
+              <Text style={[styles.modalText, { color: 'red' }]}>{t('address.delete.title')}</Text>
+>>>>>>> origin/dev
             </TouchableOpacity>
           </View>
         </TouchableOpacity>

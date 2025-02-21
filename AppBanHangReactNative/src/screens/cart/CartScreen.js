@@ -71,11 +71,19 @@ const CartScreen = ({ navigation }) => {
       t('cart.confirmDeleteMessage'),
       [
         {
+<<<<<<< HEAD
           text: t('common.cancel'),
           style: 'cancel'
         },
         {
           text: t('common.delete'),
+=======
+          text: t('cart.no'),
+          style: 'cancel'
+        },
+        {
+          text: t('cart.yes'),
+>>>>>>> origin/dev
           style: 'destructive',
           onPress: async () => {
             try {

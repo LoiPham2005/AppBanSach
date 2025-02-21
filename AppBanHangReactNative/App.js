@@ -33,11 +33,23 @@ import { Platform } from 'react-native';
 
 // Add these imports
 import EnterEmail from './src/screens/login/confirmPassword/EnterEmail';
+<<<<<<< HEAD
 import EnterOTP from './src/screens/login/confirmPassword/EnterOTP'; 
+=======
+import EnterOTP from './src/screens/login/confirmPassword/EnterOTP';
+>>>>>>> origin/dev
 import ChangePassword from './src/screens/login/confirmPassword/ChangePassword';
 import ChatScreen from './src/screens/home/chat/ChatScreen';
 import ChatListScreen from './src/screens/home/chat/ChatListScreen';
 
+<<<<<<< HEAD
+=======
+// Import đúng component ChangePass từ settings 
+import ChangePass from './src/screens/settings/changepass/ChangePass';
+import ThemeSettings from './src/screens/settings/theme/ThemeSettingsScreen';
+import LanguageSettings from './src/screens/settings/language/LanguageSettingsScreen';
+
+>>>>>>> origin/dev
 // Create a stack navigator for the app
 const Stack = createNativeStackNavigator();
 
@@ -88,8 +100,16 @@ export default function App() {
           <Stack.Screen name='Login' component={LoginScreen} />
           <Stack.Screen name='Register' component={RegisterScreen} />
           <Stack.Screen name='Drawer' component={DrawerNavigator} />
+<<<<<<< HEAD
           
           {/* Add these new screens */}
+=======
+
+          {/* Đổi tên component và route cho chức năng đổi mật khẩu trong settings */}
+          <Stack.Screen name='ChangePass' component={ChangePass} />
+
+          {/* Giữ nguyên route cho chức năng quên mật khẩu */}
+>>>>>>> origin/dev
           <Stack.Screen name='EnterEmail' component={EnterEmail} />
           <Stack.Screen name='EnterOTP' component={EnterOTP} />
           <Stack.Screen name='ChangePassword' component={ChangePassword} />
@@ -115,6 +135,11 @@ export default function App() {
           <Stack.Screen name="NotificationIcon" component={NotificationIcon} />
           <Stack.Screen name="Chat" component={ChatScreen} />
           <Stack.Screen name="ChatList" component={ChatListScreen} />
+<<<<<<< HEAD
+=======
+          <Stack.Screen name="ThemeSettings" component={ThemeSettings} />
+          <Stack.Screen name="LanguageSettings" component={LanguageSettings} />
+>>>>>>> origin/dev
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>

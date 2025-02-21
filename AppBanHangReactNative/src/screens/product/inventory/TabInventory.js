@@ -64,6 +64,7 @@ export default function TabInventory() {
   const getStatusText = (status) => {
     switch (status) {
       case 'active':
+<<<<<<< HEAD
         return t('active');
       case 'out of stock':
         return t('outOfStock');
@@ -71,6 +72,15 @@ export default function TabInventory() {
         return t('importingGoods');
       case 'stop selling':
         return t('stopSelling');
+=======
+        return t('inventory.status.active');
+      case 'out of stock':
+        return t('inventory.status.outOfStock');
+      case 'importing goods':
+        return t('inventory.status.importing');
+      case 'stop selling':
+        return t('inventory.status.stopSelling');
+>>>>>>> origin/dev
       default:
         return status;
     }
@@ -80,7 +90,11 @@ export default function TabInventory() {
     <View style={[styles.productCard, { backgroundColor: theme.backgroundColor }]}>
       <View style={styles.productHeader}>
         <Text style={[styles.productTitle, { color: theme.textColor }]}>
+<<<<<<< HEAD
           {t('nameProduct')}: {item.title}
+=======
+          {t('product.name')}: {item.title}
+>>>>>>> origin/dev
         </Text>
         <View style={[styles.statusBadge, { backgroundColor: getStatusColor(item.status) }]}>
           <Text style={styles.statusText}>{getStatusText(item.status)}</Text>
@@ -89,6 +103,7 @@ export default function TabInventory() {
 
       <View style={styles.productDetails}>
         <Text style={[styles.text, { color: theme.textColor }]}>
+<<<<<<< HEAD
           {t('author')}: {item.publishing_house}
         </Text>
         <Text style={[styles.text, { color: theme.textColor }]}>
@@ -96,6 +111,15 @@ export default function TabInventory() {
         </Text>
         <Text style={[styles.text, { color: theme.textColor }]}>
           {t('quantityProduct')}: {item.stock_quantity}
+=======
+          {t('product.author')}: {item.publishing_house}
+        </Text>
+        <Text style={[styles.text, { color: theme.textColor }]}>
+          {t('product.price')}: {item.price.toLocaleString('vi-VN')}đ
+        </Text>
+        <Text style={[styles.text, { color: theme.textColor }]}>
+          {t('product.quantity')}: {item.stock_quantity}
+>>>>>>> origin/dev
         </Text>
         
         <View style={styles.stockIndicator}>

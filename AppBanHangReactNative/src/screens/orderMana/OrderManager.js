@@ -20,6 +20,7 @@ const OrderManagerScreen = () => {
   const [refreshing, setRefreshing] = useState(false);
 
   const [routes] = useState([
+<<<<<<< HEAD
     { key: 'pending', title: 'Chờ xác nhận' },
     { key: 'confirmed', title: 'Đã xác nhận' },
     { key: 'shipping', title: 'Đang giao' },
@@ -27,6 +28,15 @@ const OrderManagerScreen = () => {
     { key: 'return_requested', title: 'Yêu cầu trả' },
     { key: 'returned', title: 'Đã trả hàng' },
     { key: 'cancelled', title: 'Đã hủy' }
+=======
+    { key: 'pending', title: t('orderManagement.status.pending') },
+    { key: 'confirmed', title: t('orderManagement.status.confirmed') },
+    { key: 'shipping', title: t('orderManagement.status.shipping') },
+    { key: 'delivered', title: t('orderManagement.status.delivered') },
+    { key: 'return_requested', title: t('orderManagement.status.return_requested') },
+    { key: 'returned', title: t('orderManagement.status.returned') },
+    { key: 'cancelled', title: t('orderManagement.status.cancelled') }
+>>>>>>> origin/dev
   ]);
 
   const fetchOrders = async () => {
@@ -110,18 +120,30 @@ const OrderManagerScreen = () => {
         await notificationService.createNotification(notificationData);
         
         fetchOrders();
+<<<<<<< HEAD
         Alert.alert('Thành công', 'Đã cập nhật trạng thái đơn hàng');
       }
     } catch (error) {
       console.error('Error updating order status:', error);
       Alert.alert('Lỗi', 'Không thể cập nhật trạng thái đơn hàng');
+=======
+        Alert.alert('Thành công', t('orderManagement.messages.updateSuccess'));
+      }
+    } catch (error) {
+      console.error('Error updating order status:', error);
+      Alert.alert('Lỗi', t('orderManagement.messages.updateError'));
+>>>>>>> origin/dev
     }
   };
 
   const handleReturn = async (orderId, userId) => {
     Alert.alert(
       'Xác nhận trả hàng',
+<<<<<<< HEAD
       'Bạn có chắc chắn muốn xác nhận trả hàng này?',
+=======
+      t('orderManagement.messages.confirmReturn'),
+>>>>>>> origin/dev
       [
         { text: 'Hủy', style: 'cancel' },
         {
@@ -165,7 +187,11 @@ const OrderManagerScreen = () => {
                 console.log('Return notification sent to user:', userId);
 
                 fetchOrders();
+<<<<<<< HEAD
                 Alert.alert('Thành công', 'Đã xác nhận trả hàng');
+=======
+                Alert.alert('Thành công', t('orderManagement.messages.returnSuccess'));
+>>>>>>> origin/dev
               } else {
                 Alert.alert('Lỗi', response?.message || 'Không thể xác nhận trả hàng');
               }
@@ -187,7 +213,11 @@ const OrderManagerScreen = () => {
       <View style={styles.orderHeader}>
         <View>
           <Text style={[styles.orderId, { color: theme.textColor }]}>
+<<<<<<< HEAD
             Mã đơn: #{item._id.slice(-6)}
+=======
+            {t('orderManagement.orderInfo.orderId', { id: item._id.slice(-6) })}
+>>>>>>> origin/dev
           </Text>
           <Text style={[styles.orderDate, { color: theme.textColor }]}>
             {new Date(item.createdAt).toLocaleString('vi-VN', {
@@ -206,6 +236,7 @@ const OrderManagerScreen = () => {
 
       <View style={styles.orderInfo}>
         <Text style={[styles.customerName, { color: theme.textColor }]}>
+<<<<<<< HEAD
           Khách hàng: {item.id_user?.username || 'N/A'}
         </Text>
         <Text style={[styles.orderTotal, { color: theme.textColor }]}>
@@ -213,6 +244,15 @@ const OrderManagerScreen = () => {
         </Text>
         <Text style={[styles.orderAddress, { color: theme.textColor }]}>
           Địa chỉ: {item.shippingAddress}
+=======
+          {t('orderManagement.orderInfo.customerName', { name: item.id_user?.username || 'N/A' })}
+        </Text>
+        <Text style={[styles.orderTotal, { color: theme.textColor }]}>
+          {t('orderManagement.orderInfo.total', { amount: item.finalTotal.toLocaleString('vi-VN') })}
+        </Text>
+        <Text style={[styles.orderAddress, { color: theme.textColor }]}>
+          {t('orderManagement.orderInfo.address', { address: item.shippingAddress })}
+>>>>>>> origin/dev
         </Text>
       </View>
 
@@ -224,13 +264,21 @@ const OrderManagerScreen = () => {
               style={[styles.actionButton, { backgroundColor: '#4CAF50' }]}
               onPress={() => handleUpdateStatus(item._id, 'confirmed', item.id_user?._id)}
             >
+<<<<<<< HEAD
               <Text style={styles.buttonText}>Xác nhận</Text>
+=======
+              <Text style={styles.buttonText}>{t('orderManagement.actions.confirm')}</Text>
+>>>>>>> origin/dev
             </TouchableOpacity>
             <TouchableOpacity
               style={[styles.actionButton, { backgroundColor: '#F44336', marginLeft: 8 }]}
               onPress={() => handleUpdateStatus(item._id, 'cancelled', item.id_user?._id)}
             >
+<<<<<<< HEAD
               <Text style={styles.buttonText}>Hủy</Text>
+=======
+              <Text style={styles.buttonText}>{t('orderManagement.actions.cancel')}</Text>
+>>>>>>> origin/dev
             </TouchableOpacity>
           </>
         )}
@@ -240,7 +288,11 @@ const OrderManagerScreen = () => {
             style={[styles.actionButton, { backgroundColor: '#2196F3' }]}
             onPress={() => handleUpdateStatus(item._id, 'shipping', item.id_user?._id)}
           >
+<<<<<<< HEAD
             <Text style={styles.buttonText}>Chuyển giao hàng</Text>
+=======
+            <Text style={styles.buttonText}>{t('orderManagement.actions.ship')}</Text>
+>>>>>>> origin/dev
           </TouchableOpacity>
         )}
 
@@ -249,7 +301,11 @@ const OrderManagerScreen = () => {
             style={[styles.actionButton, { backgroundColor: '#4CAF50' }]}
             onPress={() => handleUpdateStatus(item._id, 'delivered', item.id_user?._id)}
           >
+<<<<<<< HEAD
             <Text style={styles.buttonText}>Xác nhận đã giao</Text>
+=======
+            <Text style={styles.buttonText}>{t('orderManagement.actions.confirmDelivery')}</Text>
+>>>>>>> origin/dev
           </TouchableOpacity>
         )}
 
@@ -258,7 +314,11 @@ const OrderManagerScreen = () => {
             style={[styles.actionButton, styles.returnButton]}
             onPress={() => handleReturn(item._id, item.id_user?._id)}
           >
+<<<<<<< HEAD
             <Text style={styles.buttonText}>Xác nhận trả hàng</Text>
+=======
+            <Text style={styles.buttonText}>{t('orderManagement.actions.returnConfirm')}</Text>
+>>>>>>> origin/dev
           </TouchableOpacity>
         )}
       </View>
@@ -285,6 +345,7 @@ const OrderManagerScreen = () => {
   const getStatusText = (status) => {
     switch (status) {
       case 'pending':
+<<<<<<< HEAD
         return 'Chờ xác nhận';
       case 'confirmed':
         return 'Đã xác nhận';
@@ -294,6 +355,17 @@ const OrderManagerScreen = () => {
         return 'Đã giao';
       case 'cancelled':
         return 'Đã hủy';
+=======
+        return t('orderManagement.status.pending');
+      case 'confirmed':
+        return t('orderManagement.status.confirmed');
+      case 'shipping':
+        return t('orderManagement.status.shipping');
+      case 'delivered':
+        return t('orderManagement.status.delivered');
+      case 'cancelled':
+        return t('orderManagement.status.cancelled');
+>>>>>>> origin/dev
       default:
         return status;
     }

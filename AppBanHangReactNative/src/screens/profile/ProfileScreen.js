@@ -41,21 +41,37 @@ const ProfileScreen = ({ navigation }) => {
   }, []);
 
   const menuItems = [
+<<<<<<< HEAD
     {
       icon: 'map-pin',
       title: t('profile.address'),
       onPress: () => navigation.navigate('AddressScreen')
     },
+=======
+    // {
+    //   icon: 'map-pin',
+    //   title: t('profile.address1'),
+    //   onPress: () => navigation.navigate('AddressScreen')
+    // },
+>>>>>>> origin/dev
     {
       icon: 'credit-card',
       title: t('profile.paymentMethod'),
       onPress: () => navigation.navigate('WalletScreen')
     },
+<<<<<<< HEAD
     {
       icon: 'tag',
       title: t('profile.voucher'),
       onPress: () => navigation.navigate('VoucherScreen')
     },
+=======
+    // {
+    //   icon: 'tag',
+    //   title: t('profile.voucher'),
+    //   onPress: () => navigation.navigate('VoucherScreen')
+    // },
+>>>>>>> origin/dev
     {
       icon: 'heart',
       title: t('profile.wishlist'),
@@ -65,7 +81,11 @@ const ProfileScreen = ({ navigation }) => {
       icon: 'star',
       title: t('profile.appReviews'),
       onPress: () => {}
+<<<<<<< HEAD
     },
+=======
+    }
+>>>>>>> origin/dev
   ];
 
   return (

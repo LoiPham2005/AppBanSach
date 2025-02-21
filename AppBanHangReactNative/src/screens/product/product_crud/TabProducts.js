@@ -75,6 +75,7 @@ const TabProducts = () => {
   const handleDelete = () => {
     setIsModalVisible(false);
     Alert.alert(
+<<<<<<< HEAD
       t('deleteProduct.title'),
       t('deleteProduct.message'),
       [
@@ -84,6 +85,17 @@ const TabProducts = () => {
         },
         {
           text: t('common.delete'),
+=======
+      t('productManagement.tabProducts.askdelete'),
+      t('productManagement.tabProducts.deleteConfirm'),
+      [
+        {
+          text: t('productManagement.product.actions.cancel'),
+          style: 'cancel'
+        },
+        {
+          text: t('productManagement.product.actions.delete'),
+>>>>>>> origin/dev
           onPress: async () => {
             try {
               setIsLoading(true);
@@ -93,13 +105,21 @@ const TabProducts = () => {
                 setProducts(products.filter(p => p._id !== selectedItem._id));
                 Alert.alert(
                   t('common.success'),
+<<<<<<< HEAD
                   t('deleteProduct.success'),
+=======
+                  t('productManagement.tabProducts.deleteSuccess'),
+>>>>>>> origin/dev
                   [{ text: 'OK' }]
                 );
               } else {
                 Alert.alert(
                   t('common.error'),
+<<<<<<< HEAD
                   t('deleteProduct.error'),
+=======
+                  t('productManagement.tabProducts.deleteError'),
+>>>>>>> origin/dev
                   [{ text: 'OK' }]
                 );
               }
@@ -107,7 +127,11 @@ const TabProducts = () => {
               console.error("Error deleting product:", error);
               Alert.alert(
                 t('common.error'),
+<<<<<<< HEAD
                 t('deleteProduct.error'),
+=======
+                t('productManagement.tabProducts.deleteError'),
+>>>>>>> origin/dev
                 [{ text: 'OK' }]
               );
             } finally {
@@ -139,10 +163,17 @@ const TabProducts = () => {
           onError={(e) => console.log('Error loading image:', e.nativeEvent.error)}
         />
         <View style={styles.productDetails}>
+<<<<<<< HEAD
           <Text style={styles.productTitle}>{t('nameProduct')}: {item.title}</Text>
           <Text>{t('author')}: {item.publishing_house}</Text>
           <Text>{t('priceProduct')}: {item.price}</Text>
           <Text>{t('quantityProduct')}:{item.stock_quantity}</Text>
+=======
+          <Text style={styles.productTitle}>{t('productManagement.product.details.name')}: {item.title}</Text>
+          <Text>{t('productManagement.product.details.author')}: {item.publishing_house}</Text>
+          <Text>{t('productManagement.product.details.price')}: {item.price}</Text>
+          <Text>{t('productManagement.product.details.quantity')}: {item.stock_quantity}</Text>
+>>>>>>> origin/dev
         </View>
         <TouchableOpacity onPress={() => handleMorePress(item)}>
           <Feather name='more-vertical' size={24} />
@@ -158,6 +189,12 @@ const TabProducts = () => {
           data={products}
           renderItem={renderItem}
           keyExtractor={(item) => item._id}
+<<<<<<< HEAD
+=======
+          ListEmptyComponent={() => (
+            <Text style={styles.errorText}>{t('productManagement.tabProducts.noProducts')}</Text>
+          )}
+>>>>>>> origin/dev
           refreshControl={
             <RefreshControl
               refreshing={refreshing}
@@ -187,14 +224,22 @@ const TabProducts = () => {
                 onPress={handleViewDetail}
               >
                 <Feather name="airplay" size={20} color="#000" />
+<<<<<<< HEAD
                 <Text style={styles.modalText}>{t('details')}</Text>
+=======
+                <Text style={styles.modalText}>{t('productManagement.product.actions.view')}</Text>
+>>>>>>> origin/dev
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.modalItem}
                 onPress={handleEdit}
               >
                 <Feather name="edit" size={20} color="#000" />
+<<<<<<< HEAD
                 <Text style={styles.modalText}>{t('edit')}</Text>
+=======
+                <Text style={styles.modalText}>{t('productManagement.product.actions.edit')}</Text>
+>>>>>>> origin/dev
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -202,7 +247,11 @@ const TabProducts = () => {
                 onPress={handleDelete}
               >
                 <Feather name="trash-2" size={20} color="red" />
+<<<<<<< HEAD
                 <Text style={[styles.modalText, { color: 'red' }]}>{t('delete')}</Text>
+=======
+                <Text style={[styles.modalText, { color: 'red' }]}>{t('productManagement.product.actions.delete')}</Text>
+>>>>>>> origin/dev
               </TouchableOpacity>
             </View>
           </TouchableOpacity>
@@ -210,7 +259,11 @@ const TabProducts = () => {
       </View>
       <LoadingOverlay 
         visible={isLoading}
+<<<<<<< HEAD
         message={t('deleteProduct.deleting')}
+=======
+        message={t('productManagement.tabProducts.deleting')}
+>>>>>>> origin/dev
       />
     </>
   );

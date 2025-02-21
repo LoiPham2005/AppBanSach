@@ -67,10 +67,17 @@ const AddProductScreen = () => {
   };
 
   const statusOptions = [
+<<<<<<< HEAD
     { label: t('active'), value: 'active' },
     { label: t('outOfStock'), value: 'out of stock' },
     { label: t('importingGoods'), value: 'importing goods' },
     { label: t('stopSelling'), value: 'stop selling' },
+=======
+    { label: t('product.active'), value: 'active' },
+    { label: t('product.outOfStock'), value: 'out of stock' },
+    { label: t('product.importingGoods'), value: 'importing goods' },
+    { label: t('product.stopSelling'), value: 'stop selling' },
+>>>>>>> origin/dev
   ];
 
   // Hàm chọn ảnh từ thư viện
@@ -139,6 +146,7 @@ const AddProductScreen = () => {
 
   // Sửa lại hàm handleSubmit
   const handleSubmit = async () => {
+<<<<<<< HEAD
     if (!title || !author || !price || !description || !category || !status || mediaFiles.length === 0) {
       Alert.alert(t('common.error'), t('addProduct.fillAllFields'));
       return;
@@ -147,6 +155,45 @@ const AddProductScreen = () => {
     Alert.alert(
       t('addProduct.confirm'),
       t('addProduct.confirmMessage'),
+=======
+    if (!title.trim()) {
+      Alert.alert(t('common.error'), t('productManagement.addProduct.titleRequired'));
+      return;
+    }
+    if (!author.trim()) {
+      Alert.alert(t('common.error'), t('productManagement.addProduct.authorRequired'));
+      return;
+    }
+    if (!price.trim() || isNaN(price) || parseFloat(price) <= 0) {
+      Alert.alert(t('common.error'), t('productManagement.addProduct.priceInvalid'));
+      return;
+    }
+    if (!quality.trim() || isNaN(quality) || parseInt(quality) < 0) {
+      Alert.alert(t('common.error'), t('productManagement.addProduct.qualityInvalid'));
+      return;
+    }
+    if (!description.trim()) {
+      Alert.alert(t('common.error'), t('productManagement.addProduct.descriptionRequired'));
+      return;
+    }
+    if (!category) {
+      Alert.alert(t('common.error'), t('productManagement.addProduct.categoryRequired'));
+      return;
+    }
+    if (!status) {
+      Alert.alert(t('common.error'), t('productManagement.addProduct.statusRequired'));
+      return;
+    }
+    if (mediaFiles.length === 0) {
+      Alert.alert(t('common.error'), t('productManagement.addProduct.mediaRequired'));
+      return;
+    }
+  
+    // Tiếp tục xử lý nếu hợp lệ
+    Alert.alert(
+      t('productManagement.addProduct.confirm'),
+      t('productManagement.addProduct.confirmMessage'),
+>>>>>>> origin/dev
       [
         {
           text: t('common.cancel'),
@@ -157,7 +204,10 @@ const AddProductScreen = () => {
           onPress: async () => {
             try {
               setIsLoading(true);
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/dev
               const uploadedMedia = [];
               await Promise.all(mediaFiles.map(async (file) => {
                 if (!file.uri.startsWith('http')) {
@@ -170,7 +220,11 @@ const AddProductScreen = () => {
                   }
                 }
               }));
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> origin/dev
               const productData = {
                 title,
                 publishing_house: author,
@@ -180,6 +234,7 @@ const AddProductScreen = () => {
                 id_category: category,
                 status,
                 media: uploadedMedia,
+<<<<<<< HEAD
                 id_user: userId // Thêm id_user vào dữ liệu gửi đi
               };
 
@@ -197,6 +252,24 @@ const AddProductScreen = () => {
             } catch (error) {
               console.error("Error in handleSubmit:", error);
               Alert.alert(t('common.error'), t('addProduct.error'));
+=======
+                id_user: userId
+              };
+  
+              const result = await productService.addProduct(productData);
+              if (result.status === 200) {
+                Alert.alert(
+                  t('common.success'),
+                  t('productManagement.addProduct.success'),
+                  [{ text: 'OK', onPress: () => navigation.goBack() }]
+                );
+              } else {
+                Alert.alert(t('common.error'), result.message || t('productManagement.addProduct.error'));
+              }
+            } catch (error) {
+              console.error("Error in handleSubmit:", error);
+              Alert.alert(t('common.error'), t('productManagement.addProduct.error'));
+>>>>>>> origin/dev
             } finally {
               setIsLoading(false);
             }
@@ -205,12 +278,20 @@ const AddProductScreen = () => {
       ]
     );
   };
+<<<<<<< HEAD
+=======
+  
+>>>>>>> origin/dev
 
   const handleImagePick = async () => {
     try {
       const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
       if (status !== 'granted') {
+<<<<<<< HEAD
         Alert.alert(t('common.error'), t('addProduct.permissionDenied'));
+=======
+        Alert.alert(t('common.error'), t('productManagement.addProduct.permissionDenied'));
+>>>>>>> origin/dev
         return;
       }
   
@@ -234,7 +315,11 @@ const AddProductScreen = () => {
       }
     } catch (error) {
       console.error('Error picking images:', error);
+<<<<<<< HEAD
       Alert.alert(t('common.error'), t('addProduct.errorSelectingImage'));
+=======
+      Alert.alert(t('common.error'), t('productManagement.addProduct.errorSelectingImage'));
+>>>>>>> origin/dev
     }
   };
 
@@ -265,7 +350,11 @@ const AddProductScreen = () => {
         contentContainerStyle={{ flexGrow: 1, paddingBottom: 20 }}
       >
         <View style={styles.container}>
+<<<<<<< HEAD
           <Text style={styles.title}>{t('addNewProduct')}</Text>
+=======
+          <Text style={styles.title}>{t('productManagement.addProduct.title')}</Text>
+>>>>>>> origin/dev
 
           {mediaFiles.map((media, index) => (
             <View key={index}>
@@ -297,46 +386,78 @@ const AddProductScreen = () => {
 
 
           <View style={styles.buttonStyle}>
+<<<<<<< HEAD
             <Button title={t('chooseImage')} onPress={handleImagePick} />
           </View>
 
           <View>
             <Button title={t('chooseVideo')} onPress={handleVideoPick} />
+=======
+            <Button title={t('form.chooseImage')} onPress={handleImagePick} />
+          </View>
+
+          <View>
+            <Button title={t('form.chooseVideo')} onPress={handleVideoPick} />
+>>>>>>> origin/dev
           </View>
 
           <TextInput
             style={styles.input}
+<<<<<<< HEAD
             placeholder={t('title')}
+=======
+            placeholder={t('form.title')}
+>>>>>>> origin/dev
             value={title}
             onChangeText={setTitle}
           />
           <TextInput
             style={styles.input}
+<<<<<<< HEAD
             placeholder={t('author')}
+=======
+            placeholder={t('form.author')}
+>>>>>>> origin/dev
             value={author}
             onChangeText={setAuthor}
           />
           <TextInput
             style={styles.input}
+<<<<<<< HEAD
             placeholder={t('price')}
+=======
+            placeholder={t('form.price')}
+>>>>>>> origin/dev
             value={price}
             onChangeText={setPrice}
             keyboardType="numeric"
           />
           <TextInput
             style={styles.input}
+<<<<<<< HEAD
             placeholder={t('description')}
+=======
+            placeholder={t('form.description')}
+>>>>>>> origin/dev
             value={description}
             onChangeText={setDescription}
           />
           <TextInput
             style={styles.input}
+<<<<<<< HEAD
             placeholder={t('quality')}
+=======
+            placeholder={t('form.quality')}
+>>>>>>> origin/dev
             value={quality}
             onChangeText={setQuality}
           />
           <RNPickerSelect
+<<<<<<< HEAD
             placeholder={{ label: t('selectCategory'), value: null }}
+=======
+            placeholder={{ label: t('form.selectCategory'), value: null }}
+>>>>>>> origin/dev
             items={categories}
             onValueChange={setCategory}
             value={category}
@@ -347,7 +468,11 @@ const AddProductScreen = () => {
           />
 
           <RNPickerSelect
+<<<<<<< HEAD
             placeholder={{ label: t('selectStatus'), value: null }}
+=======
+            placeholder={{ label: t('form.selectStatus'), value: null }}
+>>>>>>> origin/dev
             items={statusOptions}
             onValueChange={setStatus}
             value={status}
@@ -356,7 +481,11 @@ const AddProductScreen = () => {
               inputAndroid: styles.inputAndroid
             }}
           />
+<<<<<<< HEAD
           <Button title={t('submit')} onPress={handleSubmit} />
+=======
+          <Button title={t('form.submit')} onPress={handleSubmit} />
+>>>>>>> origin/dev
 
           {/* Loading indicator */}
           {isLoading && (
@@ -370,7 +499,11 @@ const AddProductScreen = () => {
 
       <LoadingOverlay
         visible={isLoading}
+<<<<<<< HEAD
         message={t('addProduct.uploadingMedia')}
+=======
+        message={t('productManagement.addProduct.uploadingMedia')}
+>>>>>>> origin/dev
       />
     </>
   );

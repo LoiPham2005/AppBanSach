@@ -13,11 +13,19 @@ import { useTheme } from '../../../context/ThemeContext';
 import { chatService } from '../../../services/ChatService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { API_URL } from '../../../services/URL_API';
+<<<<<<< HEAD
+=======
+import { useTranslation } from 'react-i18next';
+>>>>>>> origin/dev
 
 const ChatListScreen = ({ navigation }) => {
   const [users, setUsers] = useState([]);
   const { theme } = useTheme();
   const [loading, setLoading] = useState(true);
+<<<<<<< HEAD
+=======
+  const { t } = useTranslation();
+>>>>>>> origin/dev
 
   useEffect(() => {
     loadUsers();
@@ -116,7 +124,11 @@ const ChatListScreen = ({ navigation }) => {
           <Feather name="arrow-left" size={24} color={theme.textColor} />
         </TouchableOpacity>
         <Text style={[styles.headerTitle, { color: theme.textColor }]}>
+<<<<<<< HEAD
           Danh sách người dùng
+=======
+          {t('chat.userList')}
+>>>>>>> origin/dev
         </Text>
         <View style={{ width: 24 }} />
       </View>

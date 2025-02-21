@@ -21,8 +21,12 @@
       },
       "useNextNotificationsApi": true,
       "permissions": ["NOTIFICATIONS"],
+<<<<<<< HEAD
       "package": "com.yourcompany.appbanhangreactnative",
       "googleServicesFile": "./google-services.json"
+=======
+      "package": "com.yourcompany.appbanhangreactnative"
+>>>>>>> origin/dev
     },
     "notification": {
       "icon": "./assets/notification-icon.png",

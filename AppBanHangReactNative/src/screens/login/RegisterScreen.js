@@ -126,27 +126,43 @@ const RegisterScreen = ({ navigation }) => {
                 >
                     <View style={styles.contentContainer}>
                         <Text style={[styles.titleStyle, { color: theme.textColor }]}>
+<<<<<<< HEAD
                             {t('registerTitle')}
+=======
+                            {t('auth.register.title')}
+>>>>>>> origin/dev
                         </Text>
 
                         <Input
                             value={name}
                             onChangeText={setName}
+<<<<<<< HEAD
                             placeholder={t('nameText')}
+=======
+                            placeholder={t('auth.register.name')}
+>>>>>>> origin/dev
                             error={errors.name}
                         />
 
                         <Input
                             value={email}
                             onChangeText={setEmail}
+<<<<<<< HEAD
                             placeholder={t('emailText')}
+=======
+                            placeholder={t('auth.register.email')}
+>>>>>>> origin/dev
                             error={errors.email}
                         />
 
                         <Input
                             value={password}
                             onChangeText={setPassword}
+<<<<<<< HEAD
                             placeholder={t('passText')}
+=======
+                            placeholder={t('auth.register.password')}
+>>>>>>> origin/dev
                             secureTextEntry={true}
                             error={errors.password}
                         />
@@ -154,11 +170,16 @@ const RegisterScreen = ({ navigation }) => {
                         <Input
                             value={confirmPassword}
                             onChangeText={setConfirmPassword}
+<<<<<<< HEAD
                             placeholder={t('confirmPassText')}
+=======
+                            placeholder={t('auth.register.confirmPassword')}
+>>>>>>> origin/dev
                             secureTextEntry={true}
                             error={errors.confirmPassword}
                         />
 
+<<<<<<< HEAD
                         <TouchableOpacity
                             style={styles.touchLogin}
                             onPress={handleRegister}
@@ -166,21 +187,38 @@ const RegisterScreen = ({ navigation }) => {
                             <Text style={styles.textLogin}>
                                 {t('buttonRegister')}
                             </Text>
+=======
+                        <TouchableOpacity 
+                            style={styles.touchLogin}
+                            onPress={handleRegister}
+                        >
+                            <Text style={styles.textLogin}>{t('auth.register.registerButton')}</Text>
+>>>>>>> origin/dev
                         </TouchableOpacity>
                     </View>
                 </ScrollView>
 
                 <View style={styles.asks}>
+<<<<<<< HEAD
                     <Text style={{ color: theme.textColor }}>{t('haveAccount')}</Text>
                     <TouchableOpacity onPress={() => navigation.navigate('Login')}>
                         <Text style={styles.textRegister}> {t('loginName')}</Text>
+=======
+                    <Text style={{ color: theme.textColor }}>{t('auth.register.haveAccount')}</Text>
+                    <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                        <Text style={styles.textRegister}> {t('auth.register.login')}</Text>
+>>>>>>> origin/dev
                     </TouchableOpacity>
                 </View>
             </KeyboardAvoidingView>
             
             <LoadingOverlay 
                 visible={isLoading} 
+<<<<<<< HEAD
                 message={t('register.registering')} 
+=======
+                message={t('auth.register.registering')} 
+>>>>>>> origin/dev
             />
         </>
     );
@@ -207,7 +245,11 @@ const styles = StyleSheet.create({
     },
     touchLogin: {
         width: 140,
+<<<<<<< HEAD
         marginTop: 50,
+=======
+        marginTop: 40,
+>>>>>>> origin/dev
         alignSelf: 'center',
         paddingHorizontal: 17,
         paddingVertical: 10,
@@ -227,7 +269,12 @@ const styles = StyleSheet.create({
     },
     textRegister: {
         color: '#2d201c'
+<<<<<<< HEAD
     }
+=======
+    },
+
+>>>>>>> origin/dev
 });
 
 export default RegisterScreen;

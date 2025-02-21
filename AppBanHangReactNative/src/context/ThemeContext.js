@@ -14,7 +14,10 @@ export const ThemeProvider = ({ children }) => {
     primaryColor: '#2196F3',
     secondaryColor: '#4CAF50',
     errorColor: '#ff0000',
+<<<<<<< HEAD
     // Add more theme colors as needed
+=======
+>>>>>>> origin/dev
   };
 
   const toggleTheme = () => {
@@ -22,14 +25,21 @@ export const ThemeProvider = ({ children }) => {
   };
 
   return (
+<<<<<<< HEAD
     // <ThemeContext.Provider value={{ theme, isDarkMode, toggleTheme }}>
     <ThemeContext.Provider value={{ isDarkMode, setIsDarkMode, theme }}>
+=======
+    <ThemeContext.Provider value={{ theme, isDarkMode, toggleTheme }}>
+>>>>>>> origin/dev
       {children}
     </ThemeContext.Provider>
   );
 };
 
+<<<<<<< HEAD
 // export const useTheme = () => useContext(ThemeContext); 
+=======
+>>>>>>> origin/dev
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (!context) {

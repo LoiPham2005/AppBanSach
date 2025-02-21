@@ -16,13 +16,24 @@ import { useTheme } from '../../../context/ThemeContext';
 import { chatService } from '../../../services/ChatService';
 import { API_URL } from '../../../services/URL_API';
 import io from 'socket.io-client';
+<<<<<<< HEAD
 
 const ChatScreen = ({ navigation, route }) => {
+=======
+import { useTranslation } from 'react-i18next';
+
+const ChatScreen = ({ navigation, route }) => {
+  const { t } = useTranslation();
+>>>>>>> origin/dev
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const [userId, setUserId] = useState(null);
   const [chatId, setChatId] = useState(null);
+<<<<<<< HEAD
   const [otherUserName, setOtherUserName] = useState('Chat với admin');
+=======
+  const [otherUserName, setOtherUserName] = useState(t('chat.title'));
+>>>>>>> origin/dev
   const { theme } = useTheme();
   const flatListRef = useRef();
   const [socket, setSocket] = useState(null);
@@ -236,7 +247,11 @@ const ChatScreen = ({ navigation, route }) => {
       />
 
       {isTyping && (
+<<<<<<< HEAD
         <Text style={styles.typingIndicator}>Đang nhập...</Text>
+=======
+        <Text style={styles.typingIndicator}>{t('chat.typing')}</Text>
+>>>>>>> origin/dev
       )}
 
       <View style={styles.inputContainer}>
@@ -244,7 +259,11 @@ const ChatScreen = ({ navigation, route }) => {
           style={[styles.input, { color: theme.textColor }]}
           value={newMessage}
           onChangeText={handleTyping}
+<<<<<<< HEAD
           placeholder="Nhập tin nhắn..."
+=======
+          placeholder={t('chat.messageHint')}
+>>>>>>> origin/dev
           placeholderTextColor={theme.textColor}
         />
         <TouchableOpacity

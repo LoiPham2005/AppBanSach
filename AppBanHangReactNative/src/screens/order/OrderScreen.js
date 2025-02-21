@@ -156,7 +156,11 @@ const OrderScreen = () => {
       <View style={styles.orderHeader}>
         <View>
           <Text style={[styles.orderId, { color: theme.textColor }]}>
+<<<<<<< HEAD
             Mã đơn: #{item._id.slice(-6)}
+=======
+            {t('order.details.orderId', { id: item._id.slice(-6) })}
+>>>>>>> origin/dev
           </Text>
           <Text style={[styles.orderDate, { color: theme.textColor }]}>
             {new Date(item.createdAt).toLocaleString('vi-VN', {
@@ -175,7 +179,11 @@ const OrderScreen = () => {
 
       <View style={styles.orderInfo}>
         <Text style={[styles.orderTotal, { color: theme.textColor }]}>
+<<<<<<< HEAD
           Tổng tiền: {item.finalTotal.toLocaleString('vi-VN')}đ
+=======
+          {t('order.details.total', { amount: item.finalTotal.toLocaleString('vi-VN') })}
+>>>>>>> origin/dev
         </Text>
         <Text style={[styles.orderAddress, { color: theme.textColor }]}>
           Địa chỉ: {item.shippingAddress}

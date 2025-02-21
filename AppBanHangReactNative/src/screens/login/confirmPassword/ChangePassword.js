@@ -5,8 +5,15 @@ import { Feather } from '@expo/vector-icons';
 import Input from '../../../components/Input';
 import LoadingOverlay from '../../../components/LoadingOverlay';
 import { forgotPassService } from '../../../services/ForgotPassService';
+<<<<<<< HEAD
 
 export default function ChangePassword({ route, navigation }) {
+=======
+import { useTranslation } from 'react-i18next';
+
+export default function ChangePassword({ route, navigation }) {
+  const { t } = useTranslation();
+>>>>>>> origin/dev
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -56,7 +63,11 @@ export default function ChangePassword({ route, navigation }) {
           <Feather name="arrow-left" size={24} color={theme.textColor} />
         </TouchableOpacity>
         <Text style={[styles.headerTitle, { color: theme.textColor }]}>
+<<<<<<< HEAD
           Đổi mật khẩu
+=======
+          {t('auth.forgotPassword.changePassword.title')}
+>>>>>>> origin/dev
         </Text>
         <View style={{ width: 24 }} />
       </View>
@@ -65,13 +76,18 @@ export default function ChangePassword({ route, navigation }) {
         <Input
           value={newPassword}
           onChangeText={setNewPassword}
+<<<<<<< HEAD
           placeholder="Mật khẩu mới"
+=======
+          placeholder={t('auth.forgotPassword.changePassword.newPassword')}
+>>>>>>> origin/dev
           secureTextEntry
         />
 
         <Input
           value={confirmPassword}
           onChangeText={setConfirmPassword}
+<<<<<<< HEAD
           placeholder="Xác nhận mật khẩu mới"
           secureTextEntry
         />
@@ -82,6 +98,22 @@ export default function ChangePassword({ route, navigation }) {
       </View>
 
       <LoadingOverlay visible={isLoading} message="Đang xử lý..." />
+=======
+          placeholder={t('auth.forgotPassword.changePassword.confirmPassword')}
+          secureTextEntry
+        />
+
+        <TouchableOpacity onPress={handleSubmit}
+        style={styles.submitButton}>
+          <Text>{t('auth.forgotPassword.changePassword.submit')}</Text>
+        </TouchableOpacity>
+      </View>
+
+      <LoadingOverlay 
+        visible={isLoading}
+        message={t('auth.forgotPassword.changePassword.processing')}
+      />
+>>>>>>> origin/dev
     </View>
   );
 }
@@ -95,6 +127,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 16,
+<<<<<<< HEAD
+=======
+    marginTop: 20
+>>>>>>> origin/dev
   },
   headerTitle: {
     fontSize: 18,

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+<<<<<<< HEAD
 import { 
   View, 
   Text, 
@@ -7,13 +8,30 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   RefreshControl 
+=======
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+  ActivityIndicator,
+  RefreshControl
+>>>>>>> origin/dev
 } from 'react-native';
 import { useTheme } from '../../context/ThemeContext';
 import { notificationService } from '../../services/NotificationService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Feather } from '@expo/vector-icons';
+<<<<<<< HEAD
 
 const NotificationScreen = ({ navigation }) => {
+=======
+import { useTranslation } from 'react-i18next';
+
+const NotificationScreen = ({ navigation }) => {
+  const { t } = useTranslation();
+>>>>>>> origin/dev
   const { theme } = useTheme();
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -53,7 +71,11 @@ const NotificationScreen = ({ navigation }) => {
     try {
       const response = await notificationService.markAsRead(notificationId);
       if (response.success) {
+<<<<<<< HEAD
         setNotifications(notifications.map(notif => 
+=======
+        setNotifications(notifications.map(notif =>
+>>>>>>> origin/dev
           notif._id === notificationId ? { ...notif, isRead: true } : notif
         ));
       }
@@ -63,9 +85,15 @@ const NotificationScreen = ({ navigation }) => {
   };
 
   const renderNotification = ({ item }) => (
+<<<<<<< HEAD
     <TouchableOpacity 
       style={[
         styles.notificationItem, 
+=======
+    <TouchableOpacity
+      style={[
+        styles.notificationItem,
+>>>>>>> origin/dev
         { backgroundColor: item.isRead ? theme.backgroundColor : '#E3F2FD' }
       ]}
       onPress={() => handleMarkAsRead(item._id)}
@@ -87,7 +115,26 @@ const NotificationScreen = ({ navigation }) => {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.backgroundColor }]}>
+<<<<<<< HEAD
       <Text style ={styles.textHeader}>Thông báo</Text>
+=======
+      <View style={styles.header}>
+      {/* Nút Back */}
+      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+        <Feather name="arrow-left" size={24} color={theme.textColor} />
+      </TouchableOpacity>
+
+      {/* Tiêu đề */}
+      <Text style={[styles.textHeader, { color: theme.textColor }]}>
+        {t('notifications.title')}
+      </Text>
+
+      {/* Placeholder để căn giữa tiêu đề */}
+      <View style={styles.backButton} />
+    </View>
+
+      {/* Danh sách thông báo */}
+>>>>>>> origin/dev
       {loading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
@@ -106,7 +153,11 @@ const NotificationScreen = ({ navigation }) => {
           }
           ListEmptyComponent={() => (
             <Text style={[styles.emptyText, { color: theme.textColor }]}>
+<<<<<<< HEAD
               Không có thông báo nào
+=======
+              {t('notifications.noNotifications')}
+>>>>>>> origin/dev
             </Text>
           )}
         />
@@ -118,6 +169,7 @@ const NotificationScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+<<<<<<< HEAD
     marginTop: 40
   },
   textHeader:{
@@ -125,6 +177,25 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 10,
+=======
+    paddingTop: 40,
+    paddingHorizontal: 20,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between', // Căn giữa tiêu đề
+    marginBottom: 20,
+  },
+  backButton: {
+    padding: 10,
+  },
+  textHeader: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    flex: 1,
+>>>>>>> origin/dev
   },
   notificationItem: {
     padding: 16,
@@ -132,6 +203,11 @@ const styles = StyleSheet.create({
     borderBottomColor: '#eee',
     flexDirection: 'row',
     alignItems: 'center',
+<<<<<<< HEAD
+=======
+    borderRadius: 8,
+    marginBottom: 8,
+>>>>>>> origin/dev
   },
   notificationContent: {
     flex: 1,
@@ -160,7 +236,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 20,
     fontSize: 16,
+<<<<<<< HEAD
   }
 });
 
 export default NotificationScreen;
+=======
+  },
+});
+
+export default NotificationScreen;
+>>>>>>> origin/dev

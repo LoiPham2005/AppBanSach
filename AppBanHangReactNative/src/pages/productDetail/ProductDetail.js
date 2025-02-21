@@ -72,7 +72,11 @@ const ProductDetailsScreen = ({ route, navigation }) => {
               console.error('Video error:', error);
               Alert.alert(
                 t('common.error'),
+<<<<<<< HEAD
                 t('videoPlaybackError')
+=======
+                t('productDetail.videoPlaybackError')
+>>>>>>> origin/dev
               );
             }}
           />
@@ -116,8 +120,13 @@ const ProductDetailsScreen = ({ route, navigation }) => {
     }
   
     Alert.alert(
+<<<<<<< HEAD
       t('cart.confirm'),
       t('cart.askCart'),
+=======
+      t('productDetail.confirm'),
+      t('productDetail.askCart'),
+>>>>>>> origin/dev
       [
         {
           text: t('cart.no'),
@@ -195,22 +204,38 @@ const ProductDetailsScreen = ({ route, navigation }) => {
           <Text style={styles.price}>{formatPrice(product.price)}</Text>
 
           <View style={styles.detailRow}>
+<<<<<<< HEAD
             <Text style={styles.label}>{t('author')}:</Text>
+=======
+            <Text style={styles.label}>{t('productDetail.author')}:</Text>
+>>>>>>> origin/dev
             <Text style={styles.value}>{product.publishing_house}</Text>
           </View>
 
           <View style={styles.detailRow}>
+<<<<<<< HEAD
             <Text style={styles.label}>{t('quantity')}:</Text>
+=======
+            <Text style={styles.label}>{t('productDetail.quantity')}:</Text>
+>>>>>>> origin/dev
             <Text style={styles.value}>{product.stock_quantity}</Text>
           </View>
 
           <View style={styles.detailRow}>
+<<<<<<< HEAD
             <Text style={styles.label}>{t('category')}:</Text>
+=======
+            <Text style={styles.label}>{t('productDetail.category')}:</Text>
+>>>>>>> origin/dev
             <Text style={styles.value}>{categoryName || t('loading')}</Text>
           </View>
 
           <View style={styles.descriptionContainer}>
+<<<<<<< HEAD
             <Text style={styles.descriptionTitle}>{t('description')}</Text>
+=======
+            <Text style={styles.descriptionTitle}>{t('productDetail.description')}</Text>
+>>>>>>> origin/dev
             <Text style={styles.descriptionText}>{product.description}</Text>
           </View>
         
@@ -228,8 +253,13 @@ const ProductDetailsScreen = ({ route, navigation }) => {
         >
           <Text style={styles.addToCartText}>
             {product.status === 'active' 
+<<<<<<< HEAD
               ? t('addCart') 
               : t(`status.${product.status}`)}
+=======
+              ? t('productDetail.addToCart') 
+              : t(`productDetail.status.${product.status}`)}
+>>>>>>> origin/dev
           </Text>
         </TouchableOpacity>
       </View>
@@ -319,6 +349,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').width * 0.8,
     justifyContent: 'center',
     alignItems: 'center',
+<<<<<<< HEAD
   },
   videoWrapper: {
     width: Dimensions.get('window').width,
@@ -346,6 +377,8 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').width * 0.8,
     justifyContent: 'center',
     alignItems: 'center',
+=======
+>>>>>>> origin/dev
     backgroundColor: '#f0f0f0',
   },
   errorContainer: {

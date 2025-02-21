@@ -247,7 +247,11 @@ const OrderPayment = ({ route }) => {
       )}
       
       {/* Title */}
+<<<<<<< HEAD
       <Text style={styles.pageTitle}>{t('order.orderTitle')}</Text>
+=======
+      <Text style={styles.pageTitle}>{t('orderPayment.title')}</Text>
+>>>>>>> origin/dev
 
       {/* Delivery Address Section */}
       <View style={styles.section}>
@@ -260,7 +264,11 @@ const OrderPayment = ({ route }) => {
             <View style={styles.sectionHeader}>
               <Feather name="map-pin" size={20} color={theme.textColor} />
               <Text style={[styles.sectionTitle, { color: theme.textColor }]}>
+<<<<<<< HEAD
                 {t('order.deliveryAddress')}
+=======
+                {t('orderPayment.address.title')}
+>>>>>>> origin/dev
               </Text>
             </View>
             <View>
@@ -272,7 +280,11 @@ const OrderPayment = ({ route }) => {
               {address}
             </Text>
           ) : (
+<<<<<<< HEAD
             <Text style={styles.placeholderText}>{t('order.enterAddress')}</Text>
+=======
+            <Text style={styles.placeholderText}>{t('orderPayment.address.selectAddress')}</Text>
+>>>>>>> origin/dev
           )}
         </TouchableOpacity>
       </View>
@@ -297,7 +309,11 @@ const OrderPayment = ({ route }) => {
             <View style={styles.sectionHeader}>
               <Feather name="tag" size={20} color={theme.textColor} />
               <Text style={[styles.sectionTitle, { color: theme.textColor }]}>
+<<<<<<< HEAD
                 {t('order.voucher')}
+=======
+                {t('orderPayment.voucher.title')}
+>>>>>>> origin/dev
               </Text>
             </View>
             <View>
@@ -347,7 +363,11 @@ const OrderPayment = ({ route }) => {
         <View style={styles.sectionHeader}>
           <Feather name="credit-card" size={20} color={theme.textColor} />
           <Text style={[styles.sectionTitle, { color: theme.textColor }]}>
+<<<<<<< HEAD
             {t('order.paymentMethod')}
+=======
+            {t('orderPayment.payment.title')}
+>>>>>>> origin/dev
           </Text>
         </View>
         
@@ -361,7 +381,11 @@ const OrderPayment = ({ route }) => {
         >
           <Feather name="dollar-sign" size={24} color={theme.textColor} />
           <Text style={[styles.paymentText, { color: theme.textColor }]}>
+<<<<<<< HEAD
             {t('order.cod')}
+=======
+            {t('orderPayment.payment.cod')}
+>>>>>>> origin/dev
           </Text>
         </TouchableOpacity>
 
@@ -377,7 +401,11 @@ const OrderPayment = ({ route }) => {
           <Feather name="credit-card" size={24} color={theme.textColor} />
           <View style={{ flex: 1 }}>
             <Text style={[styles.paymentText, { color: theme.textColor }]}>
+<<<<<<< HEAD
               Ví MoMo
+=======
+              {t('orderPayment.payment.wallet')}
+>>>>>>> origin/dev
             </Text>
             {paymentMethod === 'wallet' && (
               <Text style={styles.walletBalance}>
@@ -394,7 +422,11 @@ const OrderPayment = ({ route }) => {
       {/* Order Summary */}
       <View style={styles.summary}>
         <View style={styles.summaryRow}>
+<<<<<<< HEAD
           <Text style={styles.summaryLabel}>{t('order.subtotal')}</Text>
+=======
+          <Text style={styles.summaryLabel}>{t('orderPayment.summary.subtotal')}</Text>
+>>>>>>> origin/dev
           <Text style={styles.summaryValue}>
             {totalPrice.toLocaleString('vi-VN', {
               style: 'currency',
@@ -403,7 +435,11 @@ const OrderPayment = ({ route }) => {
           </Text>
         </View>
         <View style={styles.summaryRow}>
+<<<<<<< HEAD
           <Text style={styles.summaryLabel}>{t('order.shippingFee')}</Text>
+=======
+          <Text style={styles.summaryLabel}>{t('orderPayment.summary.shipping')}</Text>
+>>>>>>> origin/dev
           <Text style={styles.summaryValue}>
             {shippingFee.toLocaleString('vi-VN', {
               style: 'currency',
@@ -421,7 +457,11 @@ const OrderPayment = ({ route }) => {
           </Text>
         </View>
         <View style={[styles.summaryRow, styles.totalRow]}>
+<<<<<<< HEAD
           <Text style={styles.totalLabel}>{t('order.total')}</Text>
+=======
+          <Text style={styles.totalLabel}>{t('orderPayment.summary.total')}</Text>
+>>>>>>> origin/dev
           <Text style={styles.totalValue}>
             {calculateTotal().toLocaleString('vi-VN', {
               style: 'currency',
@@ -436,7 +476,11 @@ const OrderPayment = ({ route }) => {
         style={styles.placeOrderButton}
         onPress={handlePlaceOrder}
       >
+<<<<<<< HEAD
         <Text style={styles.placeOrderText}>{t('order.placeOrder')}</Text>
+=======
+        <Text style={styles.placeOrderText}>{t('orderPayment.placeOrder')}</Text>
+>>>>>>> origin/dev
       </TouchableOpacity>
     </ScrollView>
   );

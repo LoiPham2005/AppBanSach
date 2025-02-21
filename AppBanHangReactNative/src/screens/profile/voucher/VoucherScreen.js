@@ -6,11 +6,19 @@ import { useNavigation, useRoute } from '@react-navigation/native'; // Thêm use
 import { useTheme } from '../../../context/ThemeContext';
 import { voucherService } from '../../../services/VoucherService';
 import LoadingOverlay from '../../../components/LoadingOverlay';
+<<<<<<< HEAD
+=======
+import { useTranslation } from 'react-i18next';
+>>>>>>> origin/dev
 
 export default function VoucherScreen() {
   const navigation = useNavigation();
   const route = useRoute(); // Thêm dòng này
   const { theme } = useTheme();
+<<<<<<< HEAD
+=======
+  const { t } = useTranslation(); // Add this line
+>>>>>>> origin/dev
   const [loading, setLoading] = useState(false);
   const [vouchers, setVouchers] = useState([]);
 
@@ -65,7 +73,11 @@ export default function VoucherScreen() {
   const handleUseVoucher = (voucher) => {
     const now = new Date();
     const endDate = new Date(voucher.endDate);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> origin/dev
     if (now > endDate) {
       Alert.alert('Error', 'This voucher has expired');
       return;
@@ -85,7 +97,11 @@ export default function VoucherScreen() {
           text: 'Use',
           onPress: () => {
             const returnParams = route.params?.returnParams || {};
+<<<<<<< HEAD
             navigation.navigate('OrderPayment', { 
+=======
+            navigation.navigate('OrderPayment', {
+>>>>>>> origin/dev
               voucher,
               ...returnParams
             });
@@ -101,7 +117,11 @@ export default function VoucherScreen() {
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Feather name="arrow-left" size={24} color={theme.textColor} />
         </TouchableOpacity>
+<<<<<<< HEAD
         <Text style={[styles.headerTitle, { color: theme.textColor }]}>Available Vouchers</Text>
+=======
+        <Text style={[styles.headerTitle, { color: theme.textColor }]}>{t('voucher.availableVouchers')}</Text>
+>>>>>>> origin/dev
         <View style={{ width: 24 }} />
       </View>
 

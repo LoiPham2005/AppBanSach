@@ -51,7 +51,11 @@ const OrderDetail = ({ route }) => {
           <Feather name="arrow-left" size={24} color={theme.textColor} />
         </TouchableOpacity>
         <Text style={[styles.headerTitle, { color: theme.textColor }]}>
+<<<<<<< HEAD
           Chi tiết đơn hàng
+=======
+          {t('orderDetail.title')}
+>>>>>>> origin/dev
         </Text>
         <View style={{ width: 24 }} />
       </View>
@@ -60,7 +64,11 @@ const OrderDetail = ({ route }) => {
         {/* Order ID and Status */}
         <View style={styles.section}>
           <Text style={[styles.orderId, { color: theme.textColor }]}>
+<<<<<<< HEAD
             Mã đơn: #{order._id.slice(-6)}
+=======
+            {t('orderDetail.orderId', { id: order._id.slice(-6) })}
+>>>>>>> origin/dev
           </Text>
           <View style={[styles.statusBadge, { backgroundColor: getStatusColor(order.status) }]}>
             <Text style={styles.statusText}>{getStatusText(order.status)}</Text>
