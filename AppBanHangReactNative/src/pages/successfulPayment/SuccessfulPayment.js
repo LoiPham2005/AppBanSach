@@ -3,10 +3,12 @@ import React from 'react';
 import { useNavigation, CommonActions } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 import { useTheme } from '../../context/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 export default function SuccessfulPayment() {
   const navigation = useNavigation();
   const { theme } = useTheme();
+  const { t } = useTranslation();
 
   const handleContinueShopping = () => {
     // Reset navigation stack and go to Home
@@ -22,17 +24,19 @@ export default function SuccessfulPayment() {
     <View style={[styles.container, { backgroundColor: theme.backgroundColor }]}>
       <Feather name="check-circle" size={80} color="#4CAF50" />
       <Text style={[styles.title, { color: theme.textColor }]}>
-        Thanh toán thành công!
+        {t('successPayment.title')}
       </Text>
       <Text style={[styles.subtitle, { color: theme.textColor }]}>
-        Cảm ơn bạn đã mua hàng
+        {t('successPayment.subtitle')}
       </Text>
       
       <TouchableOpacity 
         style={styles.button}
         onPress={handleContinueShopping}
       >
-        <Text style={styles.buttonText}>Tiếp tục mua hàng</Text>
+        <Text style={styles.buttonText}>
+          {t('successPayment.continueShopping')}
+        </Text>
       </TouchableOpacity>
     </View>
   );

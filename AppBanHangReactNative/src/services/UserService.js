@@ -39,5 +39,25 @@ export const userService = {
       console.error("Error uploading media:", error);
       throw error;
     }
+  },
+    changePassword: async (userId, passwordData) => {
+    try {
+      const response = await fetch(`${API_URL}/api/users/change-password/${userId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(passwordData)
+      });
+  
+      const data = await response.json();
+      return {
+        status: response.status,
+        ...data
+      };
+    } catch (error) {
+      console.error('Change password error:', error);
+      throw error;
+    }
   }
 };

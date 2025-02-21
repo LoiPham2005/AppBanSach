@@ -247,7 +247,7 @@ const OrderPayment = ({ route }) => {
       )}
       
       {/* Title */}
-      <Text style={styles.pageTitle}>{t('order.orderTitle')}</Text>
+      <Text style={styles.pageTitle}>{t('orderPayment.title')}</Text>
 
       {/* Delivery Address Section */}
       <View style={styles.section}>
@@ -260,7 +260,7 @@ const OrderPayment = ({ route }) => {
             <View style={styles.sectionHeader}>
               <Feather name="map-pin" size={20} color={theme.textColor} />
               <Text style={[styles.sectionTitle, { color: theme.textColor }]}>
-                {t('order.deliveryAddress')}
+                {t('orderPayment.address.title')}
               </Text>
             </View>
             <View>
@@ -272,7 +272,7 @@ const OrderPayment = ({ route }) => {
               {address}
             </Text>
           ) : (
-            <Text style={styles.placeholderText}>{t('order.enterAddress')}</Text>
+            <Text style={styles.placeholderText}>{t('orderPayment.address.selectAddress')}</Text>
           )}
         </TouchableOpacity>
       </View>
@@ -297,7 +297,7 @@ const OrderPayment = ({ route }) => {
             <View style={styles.sectionHeader}>
               <Feather name="tag" size={20} color={theme.textColor} />
               <Text style={[styles.sectionTitle, { color: theme.textColor }]}>
-                {t('order.voucher')}
+                {t('orderPayment.voucher.title')}
               </Text>
             </View>
             <View>
@@ -347,7 +347,7 @@ const OrderPayment = ({ route }) => {
         <View style={styles.sectionHeader}>
           <Feather name="credit-card" size={20} color={theme.textColor} />
           <Text style={[styles.sectionTitle, { color: theme.textColor }]}>
-            {t('order.paymentMethod')}
+            {t('orderPayment.payment.title')}
           </Text>
         </View>
         
@@ -361,7 +361,7 @@ const OrderPayment = ({ route }) => {
         >
           <Feather name="dollar-sign" size={24} color={theme.textColor} />
           <Text style={[styles.paymentText, { color: theme.textColor }]}>
-            {t('order.cod')}
+            {t('orderPayment.payment.cod')}
           </Text>
         </TouchableOpacity>
 
@@ -377,7 +377,7 @@ const OrderPayment = ({ route }) => {
           <Feather name="credit-card" size={24} color={theme.textColor} />
           <View style={{ flex: 1 }}>
             <Text style={[styles.paymentText, { color: theme.textColor }]}>
-              Ví MoMo
+              {t('orderPayment.payment.wallet')}
             </Text>
             {paymentMethod === 'wallet' && (
               <Text style={styles.walletBalance}>
@@ -394,7 +394,7 @@ const OrderPayment = ({ route }) => {
       {/* Order Summary */}
       <View style={styles.summary}>
         <View style={styles.summaryRow}>
-          <Text style={styles.summaryLabel}>{t('order.subtotal')}</Text>
+          <Text style={styles.summaryLabel}>{t('orderPayment.summary.subtotal')}</Text>
           <Text style={styles.summaryValue}>
             {totalPrice.toLocaleString('vi-VN', {
               style: 'currency',
@@ -403,7 +403,7 @@ const OrderPayment = ({ route }) => {
           </Text>
         </View>
         <View style={styles.summaryRow}>
-          <Text style={styles.summaryLabel}>{t('order.shippingFee')}</Text>
+          <Text style={styles.summaryLabel}>{t('orderPayment.summary.shipping')}</Text>
           <Text style={styles.summaryValue}>
             {shippingFee.toLocaleString('vi-VN', {
               style: 'currency',
@@ -421,7 +421,7 @@ const OrderPayment = ({ route }) => {
           </Text>
         </View>
         <View style={[styles.summaryRow, styles.totalRow]}>
-          <Text style={styles.totalLabel}>{t('order.total')}</Text>
+          <Text style={styles.totalLabel}>{t('orderPayment.summary.total')}</Text>
           <Text style={styles.totalValue}>
             {calculateTotal().toLocaleString('vi-VN', {
               style: 'currency',
@@ -436,7 +436,7 @@ const OrderPayment = ({ route }) => {
         style={styles.placeOrderButton}
         onPress={handlePlaceOrder}
       >
-        <Text style={styles.placeOrderText}>{t('order.placeOrder')}</Text>
+        <Text style={styles.placeOrderText}>{t('orderPayment.placeOrder')}</Text>
       </TouchableOpacity>
     </ScrollView>
   );

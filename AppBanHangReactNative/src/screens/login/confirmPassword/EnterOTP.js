@@ -6,8 +6,10 @@ import Input from '../../../components/Input';
 import LoadingOverlay from '../../../components/LoadingOverlay';
 import { API_URL } from '../../../services/URL_API';
 import { forgotPassService } from '../../../services/ForgotPassService';
+import { useTranslation } from 'react-i18next';
 
 export default function EnterOTP({ route, navigation }) {
+  const { t } = useTranslation();
   const [otp, setOtp] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [timeLeft, setTimeLeft] = useState(300); // 5 minutes
@@ -77,14 +79,14 @@ export default function EnterOTP({ route, navigation }) {
           <Feather name="arrow-left" size={24} color={theme.textColor} />
         </TouchableOpacity>
         <Text style={[styles.headerTitle, { color: theme.textColor }]}>
-          Nhập mã OTP
+          {t('auth.forgotPassword.enterOTP.title')}
         </Text>
         <View style={{ width: 24 }} />
       </View>
 
       <View style={styles.content}>
         <Text style={[styles.description, { color: theme.textColor }]}>
-          Nhập mã OTP đã được gửi đến email của bạn
+          {t('auth.forgotPassword.enterOTP.description')}
         </Text>
 
         <Input
@@ -96,21 +98,25 @@ export default function EnterOTP({ route, navigation }) {
         />
 
         <Text style={[styles.timer, { color: theme.textColor }]}>
-          Thời gian còn lại: {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
+          {t('auth.forgotPassword.enterOTP.timeLeft')}
+          {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
         </Text>
 
         {timeLeft === 0 && (
           <TouchableOpacity style={styles.resendButton} onPress={handleResendOTP}>
-            <Text style={styles.resendButtonText}>Gửi lại mã</Text>
+            <Text>{t('auth.forgotPassword.enterOTP.resend')}</Text>
           </TouchableOpacity>
         )}
 
         <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-          <Text style={styles.submitButtonText}>Xác nhận</Text>
+          <Text>{t('auth.forgotPassword.enterOTP.confirm')}</Text>
         </TouchableOpacity>
       </View>
 
-      <LoadingOverlay visible={isLoading} message="Đang xử lý..." />
+      <LoadingOverlay 
+        visible={isLoading}
+        message={t('auth.forgotPassword.enterOTP.processing')}
+      />
     </View>
   );
 }
@@ -124,6 +130,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 16,
+    marginTop: 20
   },
   headerTitle: {
     fontSize: 18,

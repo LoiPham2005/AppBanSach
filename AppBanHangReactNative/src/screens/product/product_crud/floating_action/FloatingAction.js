@@ -63,7 +63,7 @@ const FloatingActionButton = () => {
               toggleMenu();
             }}
           >
-            <Text style={styles.menuText}>{t('addProductTitle')}</Text>
+            <Text style={styles.menuText}>{t('productManagement.addProduct.title')}</Text>
             <View style={styles.iconCircle}>
               <Text style={styles.iconText}>A</Text>
             </View>

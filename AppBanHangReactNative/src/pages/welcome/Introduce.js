@@ -33,27 +33,27 @@ export default function Introduce() {
                 style={styles.skipButton}
                 onPress={handleSkip}
             >
-                <Text style={styles.skipText}>Skip</Text>
+                <Text style={styles.skipText}>{t('introduce.skip')}</Text>
             </TouchableOpacity>
 
             <Swiper style={styles.wrapper} showsButtons>
                 <View style={styles.slide1}>
-                    <Text style={styles.text}>{t('slide1Text')}</Text>
-                    <Text style={styles.text1}>{t('slide1Text1')}</Text>
+                    <Text style={styles.text}>{t('introduce.slide1.title')}</Text>
+                    <Text style={styles.text1}>{t('introduce.slide1.subtitle')}</Text>
                     <Image
                         source={imageWorldBook}
                         style={styles.image} />
                 </View>
                 <View style={styles.slide2}>
-                    <Text style={styles.text}>{t('slide2Text')}</Text>
-                    <Text style={styles.text1}>{t('slide2Text1')}</Text>
+                    <Text style={styles.text}>{t('introduce.slide2.title')}</Text>
+                    <Text style={styles.text1}>{t('introduce.slide2.subtitle')}</Text>
                     <Image
                         source={imagePeopleRead}
                         style={styles.image} />
                 </View>
                 <View style={styles.slide3}>
-                    <Text style={styles.text}>{t('slide3Text')}</Text>
-                    <Text style={styles.text1}>{t('slide3Text1')}</Text>
+                    <Text style={styles.text}>{t('introduce.slide3.title')}</Text>
+                    <Text style={styles.text1}>{t('introduce.slide3.subtitle')}</Text>
                     <Image
                         source={imageCart}
                         style={styles.image} />
@@ -61,7 +61,7 @@ export default function Introduce() {
                         style={styles.loginButton}
                         onPress={handleLogin}
                     >
-                        <Text style={styles.loginButtonText}>Get Started</Text>
+                        <Text style={styles.loginButtonText}>{t('introduce.getStarted')}</Text>
                     </TouchableOpacity>
                 </View>
             </Swiper>

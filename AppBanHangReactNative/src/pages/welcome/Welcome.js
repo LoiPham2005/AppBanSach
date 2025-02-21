@@ -13,20 +13,19 @@ const WelcomeScreen = ({ navigation }) => {
 
     return (
         <ImageBackground source={imageWelcome} style={styles.container}>
-            {/* <View style={{ flex: 1, padding: 20 }}>
-        <Text>{t('welcome')}</Text>
-        <LanguageSwitcher />
-      </View> */}
-
-            <Text style={styles.titleStyle}>Chào mừng đến với GemStore!</Text>
-            <Text style={styles.contentStyle}>Nơi ở cho người yêu sách</Text>
+            <Text style={styles.titleStyle}>
+                {t('welcome.title')}
+            </Text>
+            <Text style={styles.contentStyle}>
+                {t('welcome.subtitle')}
+            </Text>
 
             <TouchableOpacity
                 style={styles.buttonStyle}
                 onPress={handleStartPress}
             >
                 <Text style={styles.textButton}>
-                    {t('textButtonWelcome')}
+                    {t('welcome.startButton')}
                 </Text>
             </TouchableOpacity>
         </ImageBackground>

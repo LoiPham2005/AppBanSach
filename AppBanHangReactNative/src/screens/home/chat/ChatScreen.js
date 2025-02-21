@@ -16,13 +16,15 @@ import { useTheme } from '../../../context/ThemeContext';
 import { chatService } from '../../../services/ChatService';
 import { API_URL } from '../../../services/URL_API';
 import io from 'socket.io-client';
+import { useTranslation } from 'react-i18next';
 
 const ChatScreen = ({ navigation, route }) => {
+  const { t } = useTranslation();
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const [userId, setUserId] = useState(null);
   const [chatId, setChatId] = useState(null);
-  const [otherUserName, setOtherUserName] = useState('Chat với admin');
+  const [otherUserName, setOtherUserName] = useState(t('chat.title'));
   const { theme } = useTheme();
   const flatListRef = useRef();
   const [socket, setSocket] = useState(null);
@@ -236,7 +238,7 @@ const ChatScreen = ({ navigation, route }) => {
       />
 
       {isTyping && (
-        <Text style={styles.typingIndicator}>Đang nhập...</Text>
+        <Text style={styles.typingIndicator}>{t('chat.typing')}</Text>
       )}
 
       <View style={styles.inputContainer}>
@@ -244,7 +246,7 @@ const ChatScreen = ({ navigation, route }) => {
           style={[styles.input, { color: theme.textColor }]}
           value={newMessage}
           onChangeText={handleTyping}
-          placeholder="Nhập tin nhắn..."
+          placeholder={t('chat.messageHint')}
           placeholderTextColor={theme.textColor}
         />
         <TouchableOpacity

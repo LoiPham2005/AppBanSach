@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  View, 
-  Text, 
-  StyleSheet, 
-  FlatList, 
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
   TouchableOpacity,
   ActivityIndicator,
-  RefreshControl 
+  RefreshControl
 } from 'react-native';
 import { useTheme } from '../../context/ThemeContext';
 import { notificationService } from '../../services/NotificationService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Feather } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 const NotificationScreen = ({ navigation }) => {
+  const { t } = useTranslation();
   const { theme } = useTheme();
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -53,7 +55,7 @@ const NotificationScreen = ({ navigation }) => {
     try {
       const response = await notificationService.markAsRead(notificationId);
       if (response.success) {
-        setNotifications(notifications.map(notif => 
+        setNotifications(notifications.map(notif =>
           notif._id === notificationId ? { ...notif, isRead: true } : notif
         ));
       }
@@ -63,9 +65,9 @@ const NotificationScreen = ({ navigation }) => {
   };
 
   const renderNotification = ({ item }) => (
-    <TouchableOpacity 
+    <TouchableOpacity
       style={[
-        styles.notificationItem, 
+        styles.notificationItem,
         { backgroundColor: item.isRead ? theme.backgroundColor : '#E3F2FD' }
       ]}
       onPress={() => handleMarkAsRead(item._id)}
@@ -87,7 +89,22 @@ const NotificationScreen = ({ navigation }) => {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.backgroundColor }]}>
-      <Text style ={styles.textHeader}>Thông báo</Text>
+      <View style={styles.header}>
+      {/* Nút Back */}
+      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+        <Feather name="arrow-left" size={24} color={theme.textColor} />
+      </TouchableOpacity>
+
+      {/* Tiêu đề */}
+      <Text style={[styles.textHeader, { color: theme.textColor }]}>
+        {t('notifications.title')}
+      </Text>
+
+      {/* Placeholder để căn giữa tiêu đề */}
+      <View style={styles.backButton} />
+    </View>
+
+      {/* Danh sách thông báo */}
       {loading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
@@ -106,7 +123,7 @@ const NotificationScreen = ({ navigation }) => {
           }
           ListEmptyComponent={() => (
             <Text style={[styles.emptyText, { color: theme.textColor }]}>
-              Không có thông báo nào
+              {t('notifications.noNotifications')}
             </Text>
           )}
         />
@@ -118,13 +135,23 @@ const NotificationScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 40
+    paddingTop: 40,
+    paddingHorizontal: 20,
   },
-  textHeader:{
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between', // Căn giữa tiêu đề
+    marginBottom: 20,
+  },
+  backButton: {
+    padding: 10,
+  },
+  textHeader: {
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 10,
+    flex: 1,
   },
   notificationItem: {
     padding: 16,
@@ -132,6 +159,8 @@ const styles = StyleSheet.create({
     borderBottomColor: '#eee',
     flexDirection: 'row',
     alignItems: 'center',
+    borderRadius: 8,
+    marginBottom: 8,
   },
   notificationContent: {
     flex: 1,
@@ -160,7 +189,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 20,
     fontSize: 16,
-  }
+  },
 });
 
 export default NotificationScreen;
