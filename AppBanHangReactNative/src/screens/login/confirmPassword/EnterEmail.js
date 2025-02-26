@@ -22,7 +22,7 @@ export default function EnterEmail({ navigation }) {
 
   const handleSubmit = async () => {
     if (!email || !validateEmail(email)) {
-      Alert.alert('Lỗi', 'Vui lòng nhập email hợp lệ');
+      Alert.alert('Lỗi', 'Vui lòng nhập email hợp lệ!');
       return;
     }
 
@@ -33,11 +33,11 @@ export default function EnterEmail({ navigation }) {
       if (response.status === 200) {
         navigation.navigate('EnterOTP', { email });
       } else {
-        Alert.alert('Lỗi', response.message || 'Email không tồn tại');
+        Alert.alert('Lỗi', response.message || 'Email không tồn tại!');
       }
     } catch (error) {
       console.error('Error:', error);
-      Alert.alert('Lỗi', 'Không thể gửi mã OTP');
+      Alert.alert('Lỗi', 'Không thể gửi mã OTP!');
     } finally {
       setIsLoading(false);
     }

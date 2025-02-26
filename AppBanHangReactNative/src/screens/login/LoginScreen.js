@@ -26,19 +26,19 @@ const LoginScreen = ({navigation}) => {
 
         // Kiểm tra email
         if (!email.trim()) {
-            tempErrors.email = t('errorEmptyEmail');
+            tempErrors.email = t('error EmptyEmail!');
             isValid = false;
         } else if (!validateEmail(email)) {
-            tempErrors.email = t('errorInvalidEmail');
+            tempErrors.email = t('error InvalidEmail!');
             isValid = false;
         }
 
         // Kiểm tra mật khẩu
         if (!password) {
-            tempErrors.password = t('errorEmptyPassword');
+            tempErrors.password = t('error EmptyPassword!');
             isValid = false;
         } else if (password.length < 6) {
-            tempErrors.password = t('errorPasswordLength');
+            tempErrors.password = t('error PasswordLength!');
             isValid = false;
         }
 

@@ -19,13 +19,13 @@ const OrderScreen = () => {
   const [refreshing, setRefreshing] = useState(false);
 
   const [routes] = useState([
-    { key: 'pending', title: 'Chờ xác nhận' },
+    { key: 'pending', title: 'Chờ xác nhận..' },
     { key: 'confirmed', title: 'Đã xác nhận' },
-    { key: 'shipping', title: 'Đang giao' }, 
-    { key: 'delivered', title: 'Đã giao' },
-    { key: 'return_requested', title: 'Yêu cầu trả' },
+    { key: 'shipping', title: 'Đang giao!' }, 
+    { key: 'delivered', title: 'Đã giao!' },
+    { key: 'return_requested', title: 'Yêu cầu trả!' },
     { key: 'returned', title: 'Đã trả hàng' },
-    { key: 'cancelled', title: 'Đã hủy' }
+    { key: 'cancelled', title: 'Đã hủy!' }
   ]);
 
   const fetchUserInfo = async () => {
@@ -44,7 +44,7 @@ const OrderScreen = () => {
 
   const fetchOrders = async (id) => {
     if (!id) {
-      console.log('No user ID provided');
+      console.log('No user ID provided...');
       return;
     }
     
@@ -59,7 +59,7 @@ const OrderScreen = () => {
       }
     } catch (error) {
       console.error('Error fetching orders:', error);
-      Alert.alert('Lỗi', 'Không thể tải danh sách đơn hàng');
+      Alert.alert('Lỗi', 'Không thể tải danh sách đơn hàng ....');
     } finally {
       setLoading(false);
     }
@@ -133,10 +133,10 @@ const OrderScreen = () => {
               const response = await orderService.updateOrderStatus(orderId, 'return_requested');
               
               if (response.status === 200) {
-                Alert.alert('Thành công', 'Đã gửi yêu cầu trả hàng');
+                Alert.alert('Thành công', 'Đã gửi yêu cầu trả hàng đến người bán');
                 fetchOrders(userId);
               } else {
-                Alert.alert('Lỗi', 'Không thể gửi yêu cầu trả hàng');
+                Alert.alert('Lỗi', 'Không thể gửi yêu cầu trả hàng đến người bán');
               }
             } catch (error) {
               console.error('Error requesting return:', error);

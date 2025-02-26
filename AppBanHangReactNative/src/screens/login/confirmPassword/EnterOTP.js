@@ -32,7 +32,7 @@ export default function EnterOTP({ route, navigation }) {
 
   const handleSubmit = async () => {
     if (!otp || otp.length !== 6) {
-      Alert.alert('Lỗi', 'Vui lòng nhập mã OTP 6 số');
+      Alert.alert('Lỗi', ' Vui lòng nhập mã OTP 6 số!');
       return;
     }
 
@@ -43,11 +43,11 @@ export default function EnterOTP({ route, navigation }) {
       if (response.status === 200) {
         navigation.navigate('ChangePassword', { email, otp });
       } else {
-        Alert.alert('Lỗi', response.message || 'Mã OTP không đúng');
+        Alert.alert('Lỗi', response.message || 'Mã OTP không đúng!');
       }
     } catch (error) {
       console.error('Error:', error);
-      Alert.alert('Lỗi', 'Không thể xác thực mã OTP');
+      Alert.alert('Lỗi', 'Không thể xác thực mã OTP!');
     } finally {
       setIsLoading(false);
     }
@@ -60,13 +60,13 @@ export default function EnterOTP({ route, navigation }) {
 
       if (response.status === 200) {
         setTimeLeft(300);
-        Alert.alert('Thành công', 'Mã OTP mới đã được gửi');
+        Alert.alert('Thành công', 'Mã OTP mới đã được gửi!');
       } else {
-        Alert.alert('Lỗi', 'Không thể gửi lại mã OTP');
+        Alert.alert('Lỗi', 'Không thể gửi lại mã OTP!');
       }
     } catch (error) {
       console.error('Error:', error);
-      Alert.alert('Lỗi', 'Không thể gửi lại mã OTP');
+      Alert.alert('Lỗi', 'Không thể gửi lại mã OTP!');
     } finally {
       setIsLoading(false);
     }
