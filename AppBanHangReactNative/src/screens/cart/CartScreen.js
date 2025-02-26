@@ -23,10 +23,6 @@ const CartScreen = ({ navigation }) => {
       fetchCartItems();
     });
 
-
-
-
-    
     return unsubscribe;
   }, []);
 
