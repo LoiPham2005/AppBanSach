@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image, Alert } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Alert, FlatList } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -61,6 +61,29 @@ export default function WalletScreen() {
     }
   };
 
+  const renderTransactionItem = ({ item }) => (
+    <View style={styles.transactionItem}>
+      <View>
+        <Text style={[styles.transactionDesc, { color: theme.textColor }]}>
+          {item.description || 'Giao dịch'}
+        </Text>
+        <Text style={styles.transactionDate}>
+          {new Date(item.timestamp).toLocaleDateString()}
+        </Text>
+      </View>
+      <Text style={[
+        styles.transactionAmount,
+        { color: item.type === 'credit' ? '#4CAF50' : '#E53935' }
+      ]}>
+        {item.type === 'credit' ? '+' : '-'}
+        {item.amount.toLocaleString('vi-VN', {
+          style: 'currency',
+          currency: 'VND'
+        })}
+      </Text>
+    </View>
+  );
+
   return (
     <View style={[styles.container, { backgroundColor: theme.backgroundColor }]}>
       <View style={styles.header}>
@@ -75,8 +98,8 @@ export default function WalletScreen() {
         <LoadingOverlay />
       ) : (
         <View style={styles.walletContainer}>
-          <Image 
-            source={require('../../../../assets/momo-logo.png')} 
+          <Image
+            source={require('../../../../assets/momo-logo.png')}
             style={styles.walletLogo}
           />
           <Text style={[styles.balanceLabel, { color: theme.textColor }]}>{t('wallet.balance')}</Text>
@@ -88,7 +111,7 @@ export default function WalletScreen() {
           </Text>
 
           {/* Thêm nút nạp tiền */}
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.rechargeButton}
             onPress={() => navigation.navigate('RechargeScreen')}
           >
@@ -100,28 +123,13 @@ export default function WalletScreen() {
               <Text style={[styles.transactionTitle, { color: theme.textColor }]}>
                 {t('wallet.history')}
               </Text>
-              {wallet.transactions.map((transaction, index) => (
-                <View key={index} style={styles.transactionItem}>
-                  <View>
-                    <Text style={[styles.transactionDesc, { color: theme.textColor }]}>
-                      {transaction.description || 'Giao dịch'}
-                    </Text>
-                    <Text style={styles.transactionDate}>
-                      {new Date(transaction.timestamp).toLocaleDateString()}
-                    </Text>
-                  </View>
-                  <Text style={[
-                    styles.transactionAmount,
-                    { color: transaction.type === 'credit' ? '#4CAF50' : '#E53935' }
-                  ]}>
-                    {transaction.type === 'credit' ? '+' : '-'}
-                    {transaction.amount.toLocaleString('vi-VN', {
-                      style: 'currency',
-                      currency: 'VND'
-                    })}
-                  </Text>
-                </View>
-              ))}
+              <FlatList
+                data={wallet.transactions}
+                renderItem={renderTransactionItem}
+                keyExtractor={(item, index) => index.toString()}
+                showsVerticalScrollIndicator={true}
+                style={styles.transactionList}
+              />
             </View>
           )}
         </View>
@@ -148,6 +156,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   walletContainer: {
+    flex: 1,
     padding: 16,
     alignItems: 'center',
   },
@@ -180,6 +189,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   transactionContainer: {
+    flex: 1,
     width: '100%',
     marginTop: 20,
   },
@@ -195,6 +205,8 @@ const styles = StyleSheet.create({
     padding: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
+    backgroundColor: 'white',
+    marginVertical: 1,
   },
   transactionDesc: {
     fontSize: 16,
@@ -207,5 +219,9 @@ const styles = StyleSheet.create({
   transactionAmount: {
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  transactionList: {
+    flex: 1,
+    width: '100%',
   }
 });
