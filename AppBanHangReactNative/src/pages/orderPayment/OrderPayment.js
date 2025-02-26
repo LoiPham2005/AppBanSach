@@ -31,11 +31,16 @@ const OrderPayment = ({ route }) => {
     if (route.params?.selectedAddress) {
       setAddress(route.params.selectedAddress);
     }
+    if (route.params?.selectedItems) {
+      setSelectedItems(route.params.selectedItems);
+    }
+    if (route.params?.totalPrice) {
+      setTotalPrice(route.params.totalPrice);
+    }
     if (route.params?.voucher) {
       setSelectedVoucher(route.params.voucher);
-      // Tính toán giảm giá dựa trên loại voucher
-      const voucherDiscount = route.params.voucher.discountType === 'percentage' 
-        ? (totalPrice * route.params.voucher.discountValue / 100)
+      const voucherDiscount = route.params.voucher.discountType === 'percentage'
+        ? (route.params.totalPrice * route.params.voucher.discountValue / 100)
         : route.params.voucher.discountValue;
       setDiscount(voucherDiscount);
     }
@@ -47,7 +52,7 @@ const OrderPayment = ({ route }) => {
       try {
         const id = await AsyncStorage.getItem('userId');
         setUserId(id);
-        
+
         if (id) {
           const response = await walletService.getWallet();
           if (response.success) {
@@ -162,7 +167,7 @@ const OrderPayment = ({ route }) => {
 
     Alert.alert(
       'Xác nhận đặt hàng',
-      paymentMethod === 'wallet' 
+      paymentMethod === 'wallet'
         ? 'Bạn có chắc chắn muốn thanh toán bằng ví MoMo không?'
         : 'Bạn có chắc chắn muốn đặt hàng không?',
       [
@@ -245,7 +250,7 @@ const OrderPayment = ({ route }) => {
           <ActivityIndicator size="large" color="#0000ff" />
         </View>
       )}
-      
+
       {/* Title */}
       <Text style={styles.pageTitle}>{t('orderPayment.title')}</Text>
 
@@ -350,7 +355,7 @@ const OrderPayment = ({ route }) => {
             {t('orderPayment.payment.title')}
           </Text>
         </View>
-        
+
         {/* COD Option */}
         <TouchableOpacity
           style={[
@@ -432,7 +437,7 @@ const OrderPayment = ({ route }) => {
       </View>
 
       {/* Place Order Button */}
-      <TouchableOpacity 
+      <TouchableOpacity
         style={styles.placeOrderButton}
         onPress={handlePlaceOrder}
       >

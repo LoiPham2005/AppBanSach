@@ -46,15 +46,10 @@ export default function EditAddress() {
                 phone: Number(formData.phone)
               })
               if (response.status === 200) {
-                Alert.alert('Thành công', 'Cập nhật địa chỉ thành công', [
-                  {
-                    text: 'OK',
-                    onPress: () => {
-                      // Set param để trigger reload
-                      navigation.navigate('AddressScreen', { shouldRefresh: true });
-                    }
-                  }
-                ]);
+                navigation.navigate('AddressScreen', {
+                  shouldRefresh: true,
+                  returnParams: route.params?.returnParams // Truyền lại returnParams
+                });
               } else {
                 Alert.alert('Lỗi', 'Không thể cập nhật địa chỉ')
               }

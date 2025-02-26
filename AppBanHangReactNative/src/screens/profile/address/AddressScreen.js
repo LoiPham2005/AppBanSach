@@ -150,7 +150,11 @@ export default function AddressScreen() {
 
   const handleEdit = () => {
     setIsModalVisible(false);
-    navigation.navigate('EditAddress', { address: selectedItem, isEditing: true });
+    navigation.navigate('EditAddress', {
+      address: selectedItem,
+      isEditing: true,
+      returnParams: route.params?.returnParams // Truyền params cho màn sửa địa chỉ
+    });
   };
 
   const handleDelete = () => {
@@ -187,13 +191,14 @@ export default function AddressScreen() {
   };
 
   const handleUseAddress = (address) => {
+    const returnParams = route.params?.returnParams;
     const fullAddress = `${address.fullName}, ${address.phone}, ${address.receivingAddress}, ${address.commune}, ${address.district}, ${address.province}`;
-    const returnParams = route.params?.returnParams || {};
 
     navigation.navigate('OrderPayment', {
       selectedAddress: fullAddress,
-      // Trả về các params đã lưu
-      ...returnParams
+      selectedItems: returnParams?.selectedItems || [], // Truyền lại danh sách sản phẩm 
+      totalPrice: returnParams?.totalPrice || 0, // Truyền lại tổng tiền
+      voucher: returnParams?.voucher // Truyền lại voucher nếu có
     });
   };
 
@@ -205,7 +210,9 @@ export default function AddressScreen() {
           <Feather name="arrow-left" size={24} color={theme.textColor} />
         </TouchableOpacity>
         <Text style={[styles.headerTitle, { color: theme.textColor }]}>{t('address.title')}</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('AddAddress')}>
+        <TouchableOpacity onPress={() => navigation.navigate('AddAddress', {
+          returnParams: route.params?.returnParams // Truyền params cho màn thêm địa chỉ
+        })}>
           <Feather name="plus" size={24} color={theme.textColor} />
         </TouchableOpacity>
       </View>

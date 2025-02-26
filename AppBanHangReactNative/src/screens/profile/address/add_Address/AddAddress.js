@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, ScrollView, Alert } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { Feather } from '@expo/vector-icons'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import { useTheme } from '../../../../context/ThemeContext'
 import { Picker } from '@react-native-picker/picker'
 import { addressService } from '../../../../services/AddressService'
@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 
 export default function AddAddress() {
   const navigation = useNavigation()
+  const route = useRoute();
   const { theme } = useTheme()
   const [loading, setLoading] = useState(false)
   const { t } = useTranslation(); // Add this line
@@ -73,15 +74,10 @@ export default function AddAddress() {
                 id_user: userId
               })
               if (response.status === 200) {
-                Alert.alert('Thành công', 'Thêm địa chỉ thành công', [
-                  {
-                    text: 'OK',
-                    onPress: () => {
-                      // Set param để trigger reload
-                      navigation.navigate('AddressScreen', { shouldRefresh: true });
-                    }
-                  }
-                ]);
+                navigation.navigate('AddressScreen', {
+                  shouldRefresh: true,
+                  returnParams: route.params?.returnParams // Truyền lại returnParams
+                });
               } else {
                 Alert.alert('Lỗi', 'Không thể thêm địa chỉ')
               }

@@ -3,8 +3,10 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-nati
 import { useTheme } from '../../context/ThemeContext';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 const OrderDetail = ({ route }) => {
+  const { t } = useTranslation();
   const { order } = route.params;
   const { theme } = useTheme();
   const navigation = useNavigation();
@@ -164,6 +166,7 @@ const styles = StyleSheet.create({
     padding: 16,
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
+    marginTop: 20
   },
   headerTitle: {
     fontSize: 18,
